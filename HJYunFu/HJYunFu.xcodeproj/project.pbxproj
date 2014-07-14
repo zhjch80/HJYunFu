@@ -19,6 +19,10 @@
 		9B28BC02197254AC009A5500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B28BBEA197254AC009A5500 /* UIKit.framework */; };
 		9B28BC0A197254AC009A5500 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BC08197254AC009A5500 /* InfoPlist.strings */; };
 		9B28BC0C197254AC009A5500 /* HJYunFuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BC0B197254AC009A5500 /* HJYunFuTests.m */; };
+		9B28BC251973785E009A5500 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BC1D1973785E009A5500 /* AESCrypt.m */; };
+		9B28BC261973785E009A5500 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BC1F1973785E009A5500 /* NSData+Base64.m */; };
+		9B28BC271973785E009A5500 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BC211973785E009A5500 /* NSData+CommonCrypto.m */; };
+		9B28BC281973785E009A5500 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BC231973785E009A5500 /* NSString+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,14 @@
 		9B28BC07197254AC009A5500 /* HJYunFuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HJYunFuTests-Info.plist"; sourceTree = "<group>"; };
 		9B28BC09197254AC009A5500 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9B28BC0B197254AC009A5500 /* HJYunFuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HJYunFuTests.m; sourceTree = "<group>"; };
+		9B28BC1C1973785E009A5500 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
+		9B28BC1D1973785E009A5500 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
+		9B28BC1E1973785E009A5500 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		9B28BC1F1973785E009A5500 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		9B28BC201973785E009A5500 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		9B28BC211973785E009A5500 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		9B28BC221973785E009A5500 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		9B28BC231973785E009A5500 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +89,8 @@
 		9B28BBDA197254AC009A5500 = {
 			isa = PBXGroup;
 			children = (
+				9B28BC1A1973785E009A5500 /* Vendors */,
+				9B28BC241973785E009A5500 /* ViewControllers */,
 				9B28BBEC197254AC009A5500 /* HJYunFu */,
 				9B28BC05197254AC009A5500 /* HJYunFuTests */,
 				9B28BBE5197254AC009A5500 /* Frameworks */,
@@ -142,6 +156,38 @@
 				9B28BC08197254AC009A5500 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9B28BC1A1973785E009A5500 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BC1B1973785E009A5500 /* AES */,
+			);
+			name = Vendors;
+			path = HJYunFu/Vendors;
+			sourceTree = "<group>";
+		};
+		9B28BC1B1973785E009A5500 /* AES */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BC1C1973785E009A5500 /* AESCrypt.h */,
+				9B28BC1D1973785E009A5500 /* AESCrypt.m */,
+				9B28BC1E1973785E009A5500 /* NSData+Base64.h */,
+				9B28BC1F1973785E009A5500 /* NSData+Base64.m */,
+				9B28BC201973785E009A5500 /* NSData+CommonCrypto.h */,
+				9B28BC211973785E009A5500 /* NSData+CommonCrypto.m */,
+				9B28BC221973785E009A5500 /* NSString+Base64.h */,
+				9B28BC231973785E009A5500 /* NSString+Base64.m */,
+			);
+			path = AES;
+			sourceTree = "<group>";
+		};
+		9B28BC241973785E009A5500 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
+			path = HJYunFu/ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +286,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B28BC281973785E009A5500 /* NSString+Base64.m in Sources */,
 				9B28BBF7197254AC009A5500 /* HJAppDelegate.m in Sources */,
+				9B28BC261973785E009A5500 /* NSData+Base64.m in Sources */,
+				9B28BC271973785E009A5500 /* NSData+CommonCrypto.m in Sources */,
+				9B28BC251973785E009A5500 /* AESCrypt.m in Sources */,
 				9B28BBF3197254AC009A5500 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
