@@ -19,6 +19,8 @@
 		9B28BC02197254AC009A5500 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B28BBEA197254AC009A5500 /* UIKit.framework */; };
 		9B28BC0A197254AC009A5500 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BC08197254AC009A5500 /* InfoPlist.strings */; };
 		9B28BC0C197254AC009A5500 /* HJYunFuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BC0B197254AC009A5500 /* HJYunFuTests.m */; };
+		9B28BC181973689D009A5500 /* HJRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BC161973689D009A5500 /* HJRootViewController.m */; };
+		9B28BC191973689D009A5500 /* HJRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BC171973689D009A5500 /* HJRootViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,9 @@
 		9B28BC07197254AC009A5500 /* HJYunFuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HJYunFuTests-Info.plist"; sourceTree = "<group>"; };
 		9B28BC09197254AC009A5500 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9B28BC0B197254AC009A5500 /* HJYunFuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HJYunFuTests.m; sourceTree = "<group>"; };
+		9B28BC151973689D009A5500 /* HJRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJRootViewController.h; sourceTree = "<group>"; };
+		9B28BC161973689D009A5500 /* HJRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJRootViewController.m; sourceTree = "<group>"; };
+		9B28BC171973689D009A5500 /* HJRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJRootViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +82,9 @@
 		9B28BBDA197254AC009A5500 = {
 			isa = PBXGroup;
 			children = (
+				9B28BC151973689D009A5500 /* HJRootViewController.h */,
+				9B28BC161973689D009A5500 /* HJRootViewController.m */,
+				9B28BC171973689D009A5500 /* HJRootViewController.xib */,
 				9B28BBEC197254AC009A5500 /* HJYunFu */,
 				9B28BC05197254AC009A5500 /* HJYunFuTests */,
 				9B28BBE5197254AC009A5500 /* Frameworks */,
@@ -221,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B28BBF1197254AC009A5500 /* InfoPlist.strings in Resources */,
+				9B28BC191973689D009A5500 /* HJRootViewController.xib in Resources */,
 				9B28BBF9197254AC009A5500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B28BC181973689D009A5500 /* HJRootViewController.m in Sources */,
 				9B28BBF7197254AC009A5500 /* HJAppDelegate.m in Sources */,
 				9B28BBF3197254AC009A5500 /* main.m in Sources */,
 			);
@@ -438,6 +448,7 @@
 				9B28BC11197254AC009A5500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B28BC12197254AC009A5500 /* Build configuration list for PBXNativeTarget "HJYunFuTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +457,7 @@
 				9B28BC14197254AC009A5500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
