@@ -30,4 +30,6 @@
 + (UIColor *)colorWith8BitRed:(NSInteger)red green:(NSInteger)green blue:(NSInteger)blue;
 + (UIColor *)colorWith8BitRed:(NSInteger)red green:(NSInteger)green blue:(NSInteger)blue alpha:(CGFloat)alpha;
 
++ (CGSize)boundingRectWithSize:(CGSize)size font:(UIFont*)font text:(NSString*)text;
+
 @end

@@ -206,6 +206,7 @@
 		self.spinnerView.center = CGPointMake(ceil(CGRectGetWidth(self.hudView.bounds)/2)+0.5, ceil(self.hudView.bounds.size.height/2)+0.5);
 }
 
+
 - (void)setFadeOutTimer:(NSTimer *)newTimer {
     
     if(fadeOutTimer)
