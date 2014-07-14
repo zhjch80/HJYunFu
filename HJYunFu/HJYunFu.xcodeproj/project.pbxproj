@@ -67,6 +67,22 @@
 		9B28BCB71973798B009A5500 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B28BCB61973798B009A5500 /* libsqlite3.dylib */; };
 		9B28BCB919737993009A5500 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B28BCB819737993009A5500 /* QuartzCore.framework */; };
 		9B28BCBB1973799B009A5500 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B28BCBA1973799B009A5500 /* libz.dylib */; };
+		9B28BCC41973AEA2009A5500 /* HJShouYeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCC21973AEA2009A5500 /* HJShouYeViewController.m */; };
+		9B28BCC51973AEA2009A5500 /* HJShouYeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCC31973AEA2009A5500 /* HJShouYeViewController.xib */; };
+		9B28BCC91973AEBE009A5500 /* HJSouSuoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCC71973AEBE009A5500 /* HJSouSuoViewController.m */; };
+		9B28BCCA1973AEBE009A5500 /* HJSouSuoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCC81973AEBE009A5500 /* HJSouSuoViewController.xib */; };
+		9B28BCCE1973AECD009A5500 /* HJGongJuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCCC1973AECD009A5500 /* HJGongJuViewController.m */; };
+		9B28BCCF1973AECD009A5500 /* HJGongJuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCCD1973AECD009A5500 /* HJGongJuViewController.xib */; };
+		9B28BCD31973AEDD009A5500 /* HJTiXingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCD11973AEDD009A5500 /* HJTiXingViewController.m */; };
+		9B28BCD41973AEDD009A5500 /* HJTiXingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCD21973AEDD009A5500 /* HJTiXingViewController.xib */; };
+		9B28BCD81973AEE8009A5500 /* HJWoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCD61973AEE8009A5500 /* HJWoViewController.m */; };
+		9B28BCD91973AEE8009A5500 /* HJWoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCD71973AEE8009A5500 /* HJWoViewController.xib */; };
+		9B28BCDF1973AF50009A5500 /* HJLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCDD1973AF50009A5500 /* HJLeftViewController.m */; };
+		9B28BCE01973AF50009A5500 /* HJLeftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCDE1973AF50009A5500 /* HJLeftViewController.xib */; };
+		9B28BCE41973AF5E009A5500 /* HJRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCE21973AF5E009A5500 /* HJRightViewController.m */; };
+		9B28BCE51973AF5E009A5500 /* HJRightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCE31973AF5E009A5500 /* HJRightViewController.xib */; };
+		9B28BCEA1973B76A009A5500 /* HJMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCE81973B76A009A5500 /* HJMTabBar.m */; };
+		9B28BCEB1973B76A009A5500 /* HJMTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCE91973B76A009A5500 /* HJMTabBar.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +203,30 @@
 		9B28BCB61973798B009A5500 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		9B28BCB819737993009A5500 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9B28BCBA1973799B009A5500 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9B28BCC11973AEA2009A5500 /* HJShouYeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJShouYeViewController.h; sourceTree = "<group>"; };
+		9B28BCC21973AEA2009A5500 /* HJShouYeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJShouYeViewController.m; sourceTree = "<group>"; };
+		9B28BCC31973AEA2009A5500 /* HJShouYeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJShouYeViewController.xib; sourceTree = "<group>"; };
+		9B28BCC61973AEBE009A5500 /* HJSouSuoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSouSuoViewController.h; sourceTree = "<group>"; };
+		9B28BCC71973AEBE009A5500 /* HJSouSuoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSouSuoViewController.m; sourceTree = "<group>"; };
+		9B28BCC81973AEBE009A5500 /* HJSouSuoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJSouSuoViewController.xib; sourceTree = "<group>"; };
+		9B28BCCB1973AECD009A5500 /* HJGongJuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJGongJuViewController.h; sourceTree = "<group>"; };
+		9B28BCCC1973AECD009A5500 /* HJGongJuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJGongJuViewController.m; sourceTree = "<group>"; };
+		9B28BCCD1973AECD009A5500 /* HJGongJuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJGongJuViewController.xib; sourceTree = "<group>"; };
+		9B28BCD01973AEDD009A5500 /* HJTiXingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJTiXingViewController.h; sourceTree = "<group>"; };
+		9B28BCD11973AEDD009A5500 /* HJTiXingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJTiXingViewController.m; sourceTree = "<group>"; };
+		9B28BCD21973AEDD009A5500 /* HJTiXingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJTiXingViewController.xib; sourceTree = "<group>"; };
+		9B28BCD51973AEE8009A5500 /* HJWoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJWoViewController.h; sourceTree = "<group>"; };
+		9B28BCD61973AEE8009A5500 /* HJWoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJWoViewController.m; sourceTree = "<group>"; };
+		9B28BCD71973AEE8009A5500 /* HJWoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJWoViewController.xib; sourceTree = "<group>"; };
+		9B28BCDC1973AF50009A5500 /* HJLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJLeftViewController.h; sourceTree = "<group>"; };
+		9B28BCDD1973AF50009A5500 /* HJLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJLeftViewController.m; sourceTree = "<group>"; };
+		9B28BCDE1973AF50009A5500 /* HJLeftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJLeftViewController.xib; sourceTree = "<group>"; };
+		9B28BCE11973AF5E009A5500 /* HJRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJRightViewController.h; sourceTree = "<group>"; };
+		9B28BCE21973AF5E009A5500 /* HJRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJRightViewController.m; sourceTree = "<group>"; };
+		9B28BCE31973AF5E009A5500 /* HJRightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJRightViewController.xib; sourceTree = "<group>"; };
+		9B28BCE71973B76A009A5500 /* HJMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMTabBar.h; sourceTree = "<group>"; };
+		9B28BCE81973B76A009A5500 /* HJMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMTabBar.m; sourceTree = "<group>"; };
+		9B28BCE91973B76A009A5500 /* HJMTabBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJMTabBar.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				9B28BC43197378FD009A5500 /* CONST.h */,
+				9B28BCE61973B76A009A5500 /* HJMTabBar */,
 				9B28BC29197378FD009A5500 /* AFNetworking */,
 				9B28BC42197378FD009A5500 /* BaseViewController */,
 				9B28BC44197378FD009A5500 /* CUSFileStorage */,
@@ -343,6 +384,13 @@
 		9B28BC241973785E009A5500 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B28BCDA1973AF32009A5500 /* LeftViewControllers */,
+				9B28BCDB1973AF32009A5500 /* RightViewControllers */,
+				9B28BCBD1973AE74009A5500 /* ShouYe */,
+				9B28BCBE1973AE74009A5500 /* SouSuo */,
+				9B28BCBC1973AE74009A5500 /* GongJu */,
+				9B28BCBF1973AE74009A5500 /* TiXing */,
+				9B28BCC01973AE74009A5500 /* Wo */,
 			);
 			name = ViewControllers;
 			path = HJYunFu/ViewControllers;
@@ -569,6 +617,86 @@
 			path = HJYunFu/Resources;
 			sourceTree = "<group>";
 		};
+		9B28BCBC1973AE74009A5500 /* GongJu */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCCB1973AECD009A5500 /* HJGongJuViewController.h */,
+				9B28BCCC1973AECD009A5500 /* HJGongJuViewController.m */,
+				9B28BCCD1973AECD009A5500 /* HJGongJuViewController.xib */,
+			);
+			path = GongJu;
+			sourceTree = "<group>";
+		};
+		9B28BCBD1973AE74009A5500 /* ShouYe */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCC11973AEA2009A5500 /* HJShouYeViewController.h */,
+				9B28BCC21973AEA2009A5500 /* HJShouYeViewController.m */,
+				9B28BCC31973AEA2009A5500 /* HJShouYeViewController.xib */,
+			);
+			path = ShouYe;
+			sourceTree = "<group>";
+		};
+		9B28BCBE1973AE74009A5500 /* SouSuo */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCC61973AEBE009A5500 /* HJSouSuoViewController.h */,
+				9B28BCC71973AEBE009A5500 /* HJSouSuoViewController.m */,
+				9B28BCC81973AEBE009A5500 /* HJSouSuoViewController.xib */,
+			);
+			path = SouSuo;
+			sourceTree = "<group>";
+		};
+		9B28BCBF1973AE74009A5500 /* TiXing */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCD01973AEDD009A5500 /* HJTiXingViewController.h */,
+				9B28BCD11973AEDD009A5500 /* HJTiXingViewController.m */,
+				9B28BCD21973AEDD009A5500 /* HJTiXingViewController.xib */,
+			);
+			path = TiXing;
+			sourceTree = "<group>";
+		};
+		9B28BCC01973AE74009A5500 /* Wo */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCD51973AEE8009A5500 /* HJWoViewController.h */,
+				9B28BCD61973AEE8009A5500 /* HJWoViewController.m */,
+				9B28BCD71973AEE8009A5500 /* HJWoViewController.xib */,
+			);
+			path = Wo;
+			sourceTree = "<group>";
+		};
+		9B28BCDA1973AF32009A5500 /* LeftViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCDC1973AF50009A5500 /* HJLeftViewController.h */,
+				9B28BCDD1973AF50009A5500 /* HJLeftViewController.m */,
+				9B28BCDE1973AF50009A5500 /* HJLeftViewController.xib */,
+			);
+			path = LeftViewControllers;
+			sourceTree = "<group>";
+		};
+		9B28BCDB1973AF32009A5500 /* RightViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCE11973AF5E009A5500 /* HJRightViewController.h */,
+				9B28BCE21973AF5E009A5500 /* HJRightViewController.m */,
+				9B28BCE31973AF5E009A5500 /* HJRightViewController.xib */,
+			);
+			path = RightViewControllers;
+			sourceTree = "<group>";
+		};
+		9B28BCE61973B76A009A5500 /* HJMTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				9B28BCE71973B76A009A5500 /* HJMTabBar.h */,
+				9B28BCE81973B76A009A5500 /* HJMTabBar.m */,
+				9B28BCE91973B76A009A5500 /* HJMTabBar.xib */,
+			);
+			path = HJMTabBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -645,8 +773,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B28BCD41973AEDD009A5500 /* HJTiXingViewController.xib in Resources */,
+				9B28BCE51973AF5E009A5500 /* HJRightViewController.xib in Resources */,
+				9B28BCEB1973B76A009A5500 /* HJMTabBar.xib in Resources */,
+				9B28BCCF1973AECD009A5500 /* HJGongJuViewController.xib in Resources */,
 				9B28BBF1197254AC009A5500 /* InfoPlist.strings in Resources */,
+				9B28BCE01973AF50009A5500 /* HJLeftViewController.xib in Resources */,
+				9B28BCCA1973AEBE009A5500 /* HJSouSuoViewController.xib in Resources */,
+				9B28BCC51973AEA2009A5500 /* HJShouYeViewController.xib in Resources */,
 				9B28BCA0197378FE009A5500 /* SVProgressHUD.bundle in Resources */,
+				9B28BCD91973AEE8009A5500 /* HJWoViewController.xib in Resources */,
 				9B28BBF9197254AC009A5500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -671,6 +807,7 @@
 				9B28BC261973785E009A5500 /* NSData+Base64.m in Sources */,
 				9B28BCA3197378FE009A5500 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B28BC93197378FD009A5500 /* FMDatabase.m in Sources */,
+				9B28BCEA1973B76A009A5500 /* HJMTabBar.m in Sources */,
 				9B28BC9F197378FE009A5500 /* Reachability.m in Sources */,
 				9B28BC271973785E009A5500 /* NSData+CommonCrypto.m in Sources */,
 				9B28BCA6197378FE009A5500 /* UIImageView+AFNetworking.m in Sources */,
@@ -682,8 +819,11 @@
 				9B28BC97197378FD009A5500 /* FMResultSet.m in Sources */,
 				9B28BC8A197378FD009A5500 /* AFURLConnectionOperation.m in Sources */,
 				9B28BC251973785E009A5500 /* AESCrypt.m in Sources */,
+				9B28BCDF1973AF50009A5500 /* HJLeftViewController.m in Sources */,
+				9B28BCE41973AF5E009A5500 /* HJRightViewController.m in Sources */,
 				9B28BCAB197378FE009A5500 /* UtilityFunc.m in Sources */,
 				9B28BC9B197378FE009A5500 /* MMDrawerBarButtonItem.m in Sources */,
+				9B28BCD81973AEE8009A5500 /* HJWoViewController.m in Sources */,
 				9B28BC98197378FD009A5500 /* JDStatusBarNotification.m in Sources */,
 				9B28BCA5197378FE009A5500 /* UIButton+AFNetworking.m in Sources */,
 				9B28BBF3197254AC009A5500 /* main.m in Sources */,
@@ -692,6 +832,8 @@
 				9B28BC8E197378FD009A5500 /* AFSecurityPolicy.m in Sources */,
 				9B28BC9A197378FE009A5500 /* JDStatusBarView.m in Sources */,
 				9B28BCA2197378FE009A5500 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				9B28BCCE1973AECD009A5500 /* HJGongJuViewController.m in Sources */,
+				9B28BCC91973AEBE009A5500 /* HJSouSuoViewController.m in Sources */,
 				9B28BC89197378FD009A5500 /* AFHTTPRequestOperationManager.m in Sources */,
 				9B28BC94197378FD009A5500 /* FMDatabaseAdditions.m in Sources */,
 				9B28BC9D197378FE009A5500 /* MMDrawerVisualState.m in Sources */,
@@ -703,10 +845,12 @@
 				9B28BCA7197378FE009A5500 /* UIProgressView+AFNetworking.m in Sources */,
 				9B28BC95197378FD009A5500 /* FMDatabasePool.m in Sources */,
 				9B28BC99197378FE009A5500 /* JDStatusBarStyle.m in Sources */,
+				9B28BCD31973AEDD009A5500 /* HJTiXingViewController.m in Sources */,
 				9B28BC8D197378FD009A5500 /* AFNetworkReachabilityManager.m in Sources */,
 				9B28BC9C197378FE009A5500 /* MMDrawerController.m in Sources */,
 				9B28BCA1197378FE009A5500 /* SVProgressHUD.m in Sources */,
 				9B28BC88197378FD009A5500 /* AFHTTPRequestOperation.m in Sources */,
+				9B28BCC41973AEA2009A5500 /* HJShouYeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

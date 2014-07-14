@@ -8,7 +8,21 @@
 
 #import "HJAppDelegate.h"
 
+#import "MMDrawerBarButtonItem.h"
+#import "MMExampleDrawerVisualStateManager.h"
+
+#import "HJShouYeViewController.h"
+#import "HJSouSuoViewController.h"
+#import "HJGongJuViewController.h"
+#import "HJTiXingViewController.h"
+#import "HJWoViewController.h"
+
+#import "HJLeftViewController.h"
+#import "HJRightViewController.h"
+
+
 @implementation HJAppDelegate
+@synthesize customTab = _customTab;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -19,6 +33,56 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)initMainViewControllers {
+    UIViewController * leftCtl = [[HJLeftViewController alloc] init];
+    UINavigationController * leftNav = [[UINavigationController alloc] initWithRootViewController:leftCtl];
+    
+    UIViewController * rightCtl = [[HJRightViewController alloc] init];
+    UINavigationController * rightNav = [[UINavigationController alloc] initWithRootViewController:rightCtl];
+    
+    UIViewController * shouYeCtl = [[HJShouYeViewController alloc] init];
+    UINavigationController * shouYeNav = [[UINavigationController alloc] initWithRootViewController:shouYeCtl];
+    
+    UIViewController * souSuoCtl = [[HJSouSuoViewController alloc] init];
+    UINavigationController * souSuoNav = [[UINavigationController alloc] initWithRootViewController:souSuoCtl];
+    
+    UIViewController * gongJuCtl = [[HJGongJuViewController alloc] init];
+    UINavigationController * gongJuNav = [[UINavigationController alloc] initWithRootViewController:gongJuCtl];
+    
+    UIViewController * tiXingCtl = [[HJTiXingViewController alloc] init];
+    UINavigationController * tiXingNav = [[UINavigationController alloc] initWithRootViewController:tiXingCtl];
+    
+    UIViewController * woCtl = [[HJWoViewController alloc] init];
+    UINavigationController * woNav = [[UINavigationController alloc] initWithRootViewController:woCtl];
+    
+    NSArray * ctlsArr = [NSArray arrayWithObjects:shouYeNav, souSuoNav, gongJuNav, tiXingNav, woNav, nil];
+
+    NSArray * normalImageArray = [NSArray arrayWithObjects:@"ico_1@2x", @"ico_2@2x", @"ico_3@2x", @"ico_4@2x", nil];
+    NSArray * selectedImageArray = [NSArray arrayWithObjects:@"ico_1_select@2x", @"ico_2_select@2x", @"ico_3_select@2x", @"ico_4_select@2x", nil];
+    
+    _customTab = [[HJMTabBar alloc] init];
+    [_customTab setTabWithArray:ctlsArr NormalImageArray:normalImageArray SelectedImageArray:selectedImageArray];
+    
+    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:_customTab leftDrawerViewController:leftNav rightDrawerViewController:rightNav];
+
+    [drawerController setMaximumRightDrawerWidth:280.0];
+    [drawerController setMaximumLeftDrawerWidth:280.0];
+    [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    
+    [drawerController
+     setDrawerVisualStateBlock:^(MMDrawerController * drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
+         MMDrawerControllerDrawerVisualStateBlock block;
+         block = [[MMExampleDrawerVisualStateManager sharedManager]
+                  drawerVisualStateBlockForDrawerSide:drawerSide];
+         if(block){
+             block(drawerController, drawerSide, percentVisible);
+         }
+     }];
+    
+    [self.window setRootViewController:drawerController];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
