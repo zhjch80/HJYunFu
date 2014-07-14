@@ -14,7 +14,7 @@
 
 
 
-#define UMAppKey                @"53bf521c56240b3b5f00103d"         //zhjch90 测试appkey 友盟的
+#define UMENG_APPKEY                @"53bf521c56240b3b5f00103d"         //zhjch90 测试appkey 友盟的
 
 
 
