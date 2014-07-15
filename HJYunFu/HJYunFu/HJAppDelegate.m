@@ -20,10 +20,21 @@
 #import "HJLeftViewController.h"
 #import "HJRightViewController.h"
 
-#import "MobClick.h"                //UMeng 统计分析
-#import "HJMTabBar.h"               //自定义Tab
+#import "MobClick.h"                                //UMeng 统计分析
+#import "UMSocial.h"                                //UMeng社会化组件
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialTencentWeiboHandler.h"
+#import "UMSocialRenrenHandler.h"
+#import "UMSocialYiXinHandler.h"
+#import "UMSocialLaiwangHandler.h"
+#import "UMSocialFacebookHandler.h"
+#import "UMSocialTwitterHandler.h"
 
+#import "APService.h"                               //极光推送
 
+#import "HJMTabBar.h"                               //自定义Tab
 
 
 @implementation HJAppDelegate
@@ -38,10 +49,39 @@
     
     [self initMainViewControllers];
     
+    [self loadJPushinfo];
+    
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    [self registeredJPushWithOptions:launchOptions];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+#pragma mark - 极光推送
+
+- (void)loadJPushinfo {
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    
+    [defaultCenter addObserver:self selector:@selector(networkDidSetup:) name:kAPNetworkDidSetupNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidClose:) name:kAPNetworkDidCloseNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidRegister:) name:kAPNetworkDidRegisterNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidLogin:) name:kAPNetworkDidLoginNotification object:nil];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kAPNetworkDidReceiveMessageNotification object:nil];
+
+}
+
+- (void)registeredJPushWithOptions:(NSDictionary *)launchOptions {
+    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                   UIRemoteNotificationTypeSound |
+                                                   UIRemoteNotificationTypeAlert)];
+    [APService setupWithOption:launchOptions];
+}
+
+#pragma mark -
+
+#pragma mark - 初始化 社会化 统计分析
 
 - (void)umengTrack {
     //    [MobClick setCrashReportEnabled:NO]; // 如果不需要捕捉异常，注释掉此行
@@ -67,6 +107,44 @@
     
     NSLog(@"online config has fininshed and note = %@", note.userInfo);
 }
+
+- (void)umengUMSocial{
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:@"5211818556240bc9ee01db2f"];
+    //设置微信AppId，url地址传nil，将默认使用友盟的网址，需要#import "UMSocialWechatHandler.h"
+    [UMSocialWechatHandler setWXAppId:@"wxd9a39c7122aa6516" url:@"http://www.umeng.com/social"];
+    //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
+    [UMSocialQQHandler setQQWithAppId:@"100424468" appKey:@"c7394704798a158208a74ab60104f0ba" url:@"http://www.umeng.com/social"];
+    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。若在新浪后台设置我们的回调地址，“http://sns.whalecloud.com/sina2/callback”，这里可以传nil ,需要 #import "UMSocialSinaHandler.h"
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    //打开腾讯微博SSO开关，设置回调地址,需要 #import "UMSocialTencentWeiboHandler.h"
+    [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:@"http://sns.whalecloud.com/tencent2/callback"];
+    //打开人人网SSO开关,需要 #import "UMSocialRenrenHandler.h"
+    [UMSocialRenrenHandler openSSO];
+    //设置易信Appkey和分享url地址,注意需要引用头文件 #import UMSocialYixinHandler.h
+    [UMSocialYixinHandler setYixinAppKey:@"yx35664bdff4db42c2b7be1e29390c1a06" url:@"http://www.umeng.com/social"];
+    //设置来往AppId，appscret，显示来源名称和url地址，注意需要引用头文件 #import "UMSocialLaiwangHandler.h"
+    [UMSocialLaiwangHandler setLaiwangAppId:@"8112117817424282305" appSecret:@"9996ed5039e641658de7b83345fee6c9" appDescription:@"友盟社会化组件" urlStirng:@"http://www.umeng.com/social"];
+    //设置Facebook，AppID和分享url，需要#import "UMSocialFacebookHandler.h"
+    //默认使用iOS自带的Facebook分享framework，在iOS 6以上有效。若要使用我们提供的facebook分享需要使用此开关：
+    [UMSocialFacebookHandler setFacebookAppID:@"1440390216179601" shareFacebookWithURL:@"http://www.umeng.com/social"];
+    //默认使用iOS自带的Twitter分享framework，在iOS 6以上有效。若要使用我们提供的twitter分享需要使用此开关：
+//    [UMSocialTwitterHandler openTwitter];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
+#pragma mark -
+#pragma mark - 主入口函数
 
 - (void)initMainViewControllers {
     UIViewController * leftCtl = [[HJLeftViewController alloc] init];
@@ -132,11 +210,13 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -148,5 +228,62 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - JPush
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error {
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [APService handleRemoteNotification:userInfo];
+}
+
+//avoid compile error for sdk under 7.0
+#ifdef __IPHONE_7_0
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNoData);
+}
+#endif
+
+#pragma mark -
+
+- (void)networkDidSetup:(NSNotification *)notification {
+    NSLog(@"已连接");
+}
+
+- (void)networkDidClose:(NSNotification *)notification {
+    NSLog(@"未连接。。。");
+}
+
+- (void)networkDidRegister:(NSNotification *)notification {
+    NSLog(@"已注册");
+}
+
+- (void)networkDidLogin:(NSNotification *)notification {
+    NSLog(@"已登录");
+}
+
+- (void)networkDidReceiveMessage:(NSNotification *)notification {
+    NSDictionary * userInfo = [notification userInfo];
+    NSString *title = [userInfo valueForKey:@"title"];
+    NSString *content = [userInfo valueForKey:@"content"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    
+    NSLog(@"收到消息\ndate:%@\ntitle:%@\ncontent:%@",[dateFormatter stringFromDate:[NSDate date]],title,content);
+}
+
+- (void)tagsAliasCallback:(int)iResCode tags:(NSSet*)tags alias:(NSString*)alias {
+    NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
+}
+
+#pragma mark -
 
 @end

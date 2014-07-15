@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UMSocialControllerService.h"
+#import "UMSocialSnsService.h"
 
-@interface HJShouYeViewController : UIViewController
+@interface HJShouYeViewController : UIViewController<UMSocialUIDelegate>{
+    
+}
 
 @end
