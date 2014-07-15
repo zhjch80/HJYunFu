@@ -81,8 +81,10 @@
 		9B28BCE01973AF50009A5500 /* HJLeftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCDE1973AF50009A5500 /* HJLeftViewController.xib */; };
 		9B28BCE41973AF5E009A5500 /* HJRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCE21973AF5E009A5500 /* HJRightViewController.m */; };
 		9B28BCE51973AF5E009A5500 /* HJRightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCE31973AF5E009A5500 /* HJRightViewController.xib */; };
-		9B28BCEA1973B76A009A5500 /* HJMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCE81973B76A009A5500 /* HJMTabBar.m */; };
-		9B28BCEB1973B76A009A5500 /* HJMTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCE91973B76A009A5500 /* HJMTabBar.xib */; };
+		9B28BCED1974C41C009A5500 /* ico_4_N_Click@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCEC1974C41C009A5500 /* ico_4_N_Click@2x.png */; };
+		9B28BCEF1974C450009A5500 /* ico_4_N_Click.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCEE1974C450009A5500 /* ico_4_N_Click.png */; };
+		9B28BCF31974C8B2009A5500 /* HJMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B28BCF11974C8B2009A5500 /* HJMTabBar.m */; };
+		9B28BCF41974C8B2009A5500 /* HJMTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B28BCF21974C8B2009A5500 /* HJMTabBar.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,9 +226,11 @@
 		9B28BCE11973AF5E009A5500 /* HJRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJRightViewController.h; sourceTree = "<group>"; };
 		9B28BCE21973AF5E009A5500 /* HJRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJRightViewController.m; sourceTree = "<group>"; };
 		9B28BCE31973AF5E009A5500 /* HJRightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJRightViewController.xib; sourceTree = "<group>"; };
-		9B28BCE71973B76A009A5500 /* HJMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMTabBar.h; sourceTree = "<group>"; };
-		9B28BCE81973B76A009A5500 /* HJMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMTabBar.m; sourceTree = "<group>"; };
-		9B28BCE91973B76A009A5500 /* HJMTabBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJMTabBar.xib; sourceTree = "<group>"; };
+		9B28BCEC1974C41C009A5500 /* ico_4_N_Click@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_4_N_Click@2x.png"; sourceTree = "<group>"; };
+		9B28BCEE1974C450009A5500 /* ico_4_N_Click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_4_N_Click.png; sourceTree = "<group>"; };
+		9B28BCF01974C8B2009A5500 /* HJMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMTabBar.h; sourceTree = "<group>"; };
+		9B28BCF11974C8B2009A5500 /* HJMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMTabBar.m; sourceTree = "<group>"; };
+		9B28BCF21974C8B2009A5500 /* HJMTabBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJMTabBar.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -612,6 +616,8 @@
 		9B28BCAD19737925009A5500 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9B28BCEE1974C450009A5500 /* ico_4_N_Click.png */,
+				9B28BCEC1974C41C009A5500 /* ico_4_N_Click@2x.png */,
 			);
 			name = Resources;
 			path = HJYunFu/Resources;
@@ -690,9 +696,9 @@
 		9B28BCE61973B76A009A5500 /* HJMTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				9B28BCE71973B76A009A5500 /* HJMTabBar.h */,
-				9B28BCE81973B76A009A5500 /* HJMTabBar.m */,
-				9B28BCE91973B76A009A5500 /* HJMTabBar.xib */,
+				9B28BCF01974C8B2009A5500 /* HJMTabBar.h */,
+				9B28BCF11974C8B2009A5500 /* HJMTabBar.m */,
+				9B28BCF21974C8B2009A5500 /* HJMTabBar.xib */,
 			);
 			path = HJMTabBar;
 			sourceTree = "<group>";
@@ -773,16 +779,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B28BCED1974C41C009A5500 /* ico_4_N_Click@2x.png in Resources */,
 				9B28BCD41973AEDD009A5500 /* HJTiXingViewController.xib in Resources */,
 				9B28BCE51973AF5E009A5500 /* HJRightViewController.xib in Resources */,
-				9B28BCEB1973B76A009A5500 /* HJMTabBar.xib in Resources */,
 				9B28BCCF1973AECD009A5500 /* HJGongJuViewController.xib in Resources */,
 				9B28BBF1197254AC009A5500 /* InfoPlist.strings in Resources */,
 				9B28BCE01973AF50009A5500 /* HJLeftViewController.xib in Resources */,
+				9B28BCEF1974C450009A5500 /* ico_4_N_Click.png in Resources */,
 				9B28BCCA1973AEBE009A5500 /* HJSouSuoViewController.xib in Resources */,
 				9B28BCC51973AEA2009A5500 /* HJShouYeViewController.xib in Resources */,
 				9B28BCA0197378FE009A5500 /* SVProgressHUD.bundle in Resources */,
 				9B28BCD91973AEE8009A5500 /* HJWoViewController.xib in Resources */,
+				9B28BCF41974C8B2009A5500 /* HJMTabBar.xib in Resources */,
 				9B28BBF9197254AC009A5500 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,7 +815,7 @@
 				9B28BC261973785E009A5500 /* NSData+Base64.m in Sources */,
 				9B28BCA3197378FE009A5500 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B28BC93197378FD009A5500 /* FMDatabase.m in Sources */,
-				9B28BCEA1973B76A009A5500 /* HJMTabBar.m in Sources */,
+				9B28BCF31974C8B2009A5500 /* HJMTabBar.m in Sources */,
 				9B28BC9F197378FE009A5500 /* Reachability.m in Sources */,
 				9B28BC271973785E009A5500 /* NSData+CommonCrypto.m in Sources */,
 				9B28BCA6197378FE009A5500 /* UIImageView+AFNetworking.m in Sources */,

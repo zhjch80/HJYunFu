@@ -21,12 +21,12 @@
 #import "HJRightViewController.h"
 
 #import "MobClick.h"                //UMeng 统计分析
+#import "HJMTabBar.h"               //自定义Tab
 
 
 
 
 @implementation HJAppDelegate
-@synthesize customTab = _customTab;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -36,7 +36,7 @@
     //  友盟的方法本身是异步执行，所以不需要再异步调用
     [self umengTrack];
     
-    [self initMainViewControllers];
+//    [self initMainViewControllers];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -92,13 +92,14 @@
     
     NSArray * ctlsArr = [NSArray arrayWithObjects:shouYeNav, souSuoNav, gongJuNav, tiXingNav, woNav, nil];
 
-    NSArray * normalImageArray = [NSArray arrayWithObjects:@"ico_1@2x", @"ico_2@2x", @"ico_3@2x", @"ico_4@2x", nil];
-    NSArray * selectedImageArray = [NSArray arrayWithObjects:@"ico_1_select@2x", @"ico_2_select@2x", @"ico_3_select@2x", @"ico_4_select@2x", nil];
+    NSArray * normalImageArray = [[NSArray alloc] initWithObjects:@"ico_4_N_Click@2x", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", nil];
     
-    _customTab = [[HJMTabBar alloc] init];
-    [_customTab setTabWithArray:ctlsArr NormalImageArray:normalImageArray SelectedImageArray:selectedImageArray];
+    NSArray * selectedImageArray = [[NSArray alloc] initWithObjects:@"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", nil];
     
-    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:_customTab leftDrawerViewController:leftNav rightDrawerViewController:rightNav];
+    HJMTabBar * customTab = [[HJMTabBar alloc] init];
+    [customTab setTabWithArray:ctlsArr NormalImageArray:normalImageArray SelectedImageArray:selectedImageArray];
+    
+    MMDrawerController * drawerController = [[MMDrawerController alloc] initWithCenterViewController:customTab leftDrawerViewController:leftNav rightDrawerViewController:rightNav];
 
     [drawerController setMaximumRightDrawerWidth:280.0];
     [drawerController setMaximumLeftDrawerWidth:280.0];

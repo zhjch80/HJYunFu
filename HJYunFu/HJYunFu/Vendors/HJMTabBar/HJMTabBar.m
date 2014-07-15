@@ -25,19 +25,12 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideTabBar:) name:@"hideTabbar" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appearTabBar:) name:@"appearTabbar" object:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLeftToEmptyMethods) name:@"setLeftToEmptyMethods" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setRightToEmptyMethods) name:@"setRightToEmptyMethods" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetLeftToNilMethods) name:@"SetLeftToNilMethods" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetRightToNilMethods) name:@"SetRightToNilMethods" object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MenuBtnMethods) name:@"MenuBtnMethods" object:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLeftSlide) name:@"setLeftSlide" object:nil];
-
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MenuLeftBtnMethods) name:@"MenuLeftBtnMethods" object:nil];
-
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MenuRightBtnMethods) name:@"MenuRightBtnMethods" object:nil];
-
-        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetTopicLeftSlide) name:@"SetTopicLeftSlide" object:nil];
-//        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mTabSelectIndex:) name:@"mTabSelectIndex" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mTabSelectIndex:) name:@"mTabSelectIndex" object:nil];
     }
     return self;
 }
@@ -109,6 +102,7 @@
 }
 
 - (void)selectTab:(UIButton *)selectBtn{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"FromSearchToFindswitch" object:nil];
     if(selectBtn.selected == NO)
     {
         NSInteger selectTag = selectBtn.tag;
@@ -132,12 +126,12 @@
     originalTabView.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height, 320, 49);
     originalTabView.backgroundColor = [UIColor clearColor];
     UIView *newTabView = [array objectAtIndex:0];
-    newTabView.frame = CGRectMake(0, 0, 320,[UIScreen mainScreen].bounds.size.height);
-    newTabView.backgroundColor = [UIColor clearColor];
+    newTabView.frame = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height);
+    newTabView.backgroundColor = [UIColor redColor];
     
 }
 
-- (void)setLeftToEmptyMethods{
+-(void)SetLeftToNilMethods{
     [self.mm_drawerController
      closeDrawerAnimated:YES
      completion:^(BOOL finished) {
@@ -145,7 +139,7 @@
      }];
 }
 
-- (void)setRightToEmptyMethods{
+-(void)SetRightToNilMethods{
     [self.mm_drawerController
      closeDrawerAnimated:YES
      completion:^(BOOL finished) {
@@ -153,19 +147,33 @@
      }];
 }
 
-//设置界面 的左侧滑
-//-(void)setLeftSlide{
-//    KJLeftPartViewController * LeftPartCtl = [[KJLeftPartViewController alloc] init];
-//    UINavigationController * leftPartNav = [[UINavigationController alloc] initWithRootViewController:LeftPartCtl];
-//    [self.mm_drawerController setLeftDrawerViewController:leftPartNav];
-//}
-
--(void)MenuLeftBtnMethods{
+-(void)MenuBtnMethods{
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
-- (void)MenuRightBtnMethods{
-    [self.mm_drawerController toggleDrawerSide:MMDrawerSideRight animated:YES completion:nil];
+////设置饮食推荐 的左侧滑
+//-(void)SetLeftSlide{
+//    HJMLeftSideDrawerViewController * LeftSideDrawer = [[HJMLeftSideDrawerViewController alloc] initWithNibName:@"HJMLeftSideDrawerViewController" bundle:nil];
+//    [self.mm_drawerController setLeftDrawerViewController:LeftSideDrawer];
+//}
+
+////设置养生话题 的左侧滑
+//-(void)SetTopicLeftSlide{
+//    HJMTopicsLeftSideDrawerViewController * HJMTopicsLeftSideDrawer = [[HJMTopicsLeftSideDrawerViewController alloc] initWithNibName:@"HJMTopicsLeftSideDrawerViewController" bundle:nil];
+//    [self.mm_drawerController setLeftDrawerViewController:HJMTopicsLeftSideDrawer];
+//}
+
+- (void)mTabSelectIndex:(NSNotification *)notify{
+    NSInteger value = [[notify.userInfo objectForKey:@"TabSelectIndex"] integerValue];
+    UIViewController *selectVC = [self.viewControllers objectAtIndex:value];
+    self.selectedViewController = selectVC;
+    for(int i = 0; i < count; i++) {
+        UIButton *btn = (UIButton *)[btnArray objectAtIndex:i];
+        if (btn.tag != value)
+            btn.selected = NO;
+        else
+            btn.selected = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

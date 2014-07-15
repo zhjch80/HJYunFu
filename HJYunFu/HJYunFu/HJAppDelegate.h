@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HJMTabBar.h"
 
 @interface HJAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) HJMTabBar * customTab;
 @end
