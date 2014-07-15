@@ -25,9 +25,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideTabBar:) name:@"hideTabbar" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appearTabBar:) name:@"appearTabbar" object:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetLeftToNilMethods) name:@"SetLeftToNilMethods" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetRightToNilMethods) name:@"SetRightToNilMethods" object:nil];
+        //隐藏侧滑
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSlideDrawerMethods:) name:@"hideSlideDrawerMethods" object:nil];
 
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MenuBtnMethods) name:@"MenuBtnMethods" object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mTabSelectIndex:) name:@"mTabSelectIndex" object:nil];
@@ -101,7 +102,7 @@
     }
 }
 
-- (void)selectTab:(UIButton *)selectBtn{
+- (void)selectTab:(UIButton *)selectBtn {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FromSearchToFindswitch" object:nil];
     if(selectBtn.selected == NO)
     {
@@ -131,7 +132,28 @@
     
 }
 
--(void)SetLeftToNilMethods{
+- (void)hideSlideDrawerMethods:(NSNotification *)notify {
+    NSInteger value = [[notify.userInfo objectForKey:@"hideSlide"] integerValue];
+    switch (value) {
+        case 1:{
+            [self hideLeftSlideDrawer];
+            break;
+        }
+        case 2:{
+            [self hideRightSlideDrawer];
+            break;
+        }
+        case 3:{
+            [self hideAllSlideDrawer];
+            break;
+        }
+    
+        default:
+            break;
+    }
+}
+
+- (void)hideLeftSlideDrawer {
     [self.mm_drawerController
      closeDrawerAnimated:YES
      completion:^(BOOL finished) {
@@ -139,7 +161,7 @@
      }];
 }
 
--(void)SetRightToNilMethods{
+- (void)hideRightSlideDrawer {
     [self.mm_drawerController
      closeDrawerAnimated:YES
      completion:^(BOOL finished) {
@@ -147,23 +169,28 @@
      }];
 }
 
--(void)MenuBtnMethods{
+- (void)hideAllSlideDrawer {
+    [self hideLeftSlideDrawer];
+    [self hideRightSlideDrawer];
+}
+
+- (void)MenuBtnMethods {
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 ////设置饮食推荐 的左侧滑
-//-(void)SetLeftSlide{
+//- (void)SetLeftSlide {
 //    HJMLeftSideDrawerViewController * LeftSideDrawer = [[HJMLeftSideDrawerViewController alloc] initWithNibName:@"HJMLeftSideDrawerViewController" bundle:nil];
 //    [self.mm_drawerController setLeftDrawerViewController:LeftSideDrawer];
 //}
 
 ////设置养生话题 的左侧滑
-//-(void)SetTopicLeftSlide{
+//- (void)SetTopicLeftSlide {
 //    HJMTopicsLeftSideDrawerViewController * HJMTopicsLeftSideDrawer = [[HJMTopicsLeftSideDrawerViewController alloc] initWithNibName:@"HJMTopicsLeftSideDrawerViewController" bundle:nil];
 //    [self.mm_drawerController setLeftDrawerViewController:HJMTopicsLeftSideDrawer];
 //}
 
-- (void)mTabSelectIndex:(NSNotification *)notify{
+- (void)mTabSelectIndex:(NSNotification *)notify {
     NSInteger value = [[notify.userInfo objectForKey:@"TabSelectIndex"] integerValue];
     UIViewController *selectVC = [self.viewControllers objectAtIndex:value];
     self.selectedViewController = selectVC;

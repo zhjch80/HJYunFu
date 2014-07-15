@@ -36,7 +36,7 @@
     //  友盟的方法本身是异步执行，所以不需要再异步调用
     [self umengTrack];
     
-//    [self initMainViewControllers];
+    [self initMainViewControllers];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -92,9 +92,9 @@
     
     NSArray * ctlsArr = [NSArray arrayWithObjects:shouYeNav, souSuoNav, gongJuNav, tiXingNav, woNav, nil];
 
-    NSArray * normalImageArray = [[NSArray alloc] initWithObjects:@"ico_4_N_Click@2x", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", nil];
+    NSArray * normalImageArray = [[NSArray alloc] initWithObjects:@"test", @"test", @"test", @"test", @"test", nil];
     
-    NSArray * selectedImageArray = [[NSArray alloc] initWithObjects:@"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", @"ico_4_N_Click", nil];
+    NSArray * selectedImageArray = [[NSArray alloc] initWithObjects:@"test", @"test", @"test", @"test", @"test", nil];
     
     HJMTabBar * customTab = [[HJMTabBar alloc] init];
     [customTab setTabWithArray:ctlsArr NormalImageArray:normalImageArray SelectedImageArray:selectedImageArray];
@@ -117,6 +117,9 @@
      }];
     
     [self.window setRootViewController:drawerController];
+    
+    //隐藏两边侧滑
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideSlideDrawerMethods" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys: @"3", @"hideSlide", nil]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
