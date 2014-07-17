@@ -29,6 +29,28 @@
     // Do any additional setup after loading the view from its nib.
     
     self.view.backgroundColor = [UIColor yellowColor];
+    [self loadRequest];
+}
+
+- (void)loadRequest {
+    NSLog(@"laodRequest...");
+    /*
+     By default, AFJSONRequestOperation accepts only "text/json", "application/json" or "text/javascript" content-types from server, but you are getting "text/html".
+     */
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
+    [manager POST:@"http://app.food.ttys5.com/api/food/suijitui" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"responseObject:%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error:%@",error);
+    }];
+
+
+    
+
     
 }
 
