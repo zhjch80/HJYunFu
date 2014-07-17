@@ -38,6 +38,7 @@
      By default, AFJSONRequestOperation accepts only "text/json", "application/json" or "text/javascript" content-types from server, but you are getting "text/html".
      */
     
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
