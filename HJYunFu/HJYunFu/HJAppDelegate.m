@@ -11,6 +11,7 @@
 #import "MMDrawerBarButtonItem.h"
 #import "MMExampleDrawerVisualStateManager.h"
 
+#import "HJGuideSetViewController.h"
 #import "HJShouYeViewController.h"
 #import "HJSouSuoViewController.h"
 #import "HJGongJuViewController.h"
@@ -44,10 +45,27 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
+    //增加标识，用于判断是否是第一次启动应用...
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kEverLaunched]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kEverLaunched];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kFirstLaunch];
+    }
+    
+    [self registeredGlobalWidthAndHeight];
+    
+    
     //  友盟的方法本身是异步执行，所以不需要再异步调用
     [self umengTrack];
     
-    [self initMainViewControllers];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kFirstLaunch]) {
+        //默认第一次启动的界面
+        [self initFitstViewControllers];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }else {
+        [self initMainViewControllers];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+
     
     [self loadJPushinfo];
     
@@ -78,8 +96,6 @@
                                                    UIRemoteNotificationTypeAlert)];
     [APService setupWithOption:launchOptions];
 }
-
-#pragma mark -
 
 #pragma mark - 初始化 社会化 统计分析
 
@@ -143,7 +159,6 @@
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
-#pragma mark -
 #pragma mark - 主入口函数
 
 - (void)initMainViewControllers {
@@ -199,6 +214,23 @@
     //隐藏两边侧滑
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hideSlideDrawerMethods" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys: @"3", @"hideSlide", nil]];
 }
+
+- (void)initFitstViewControllers {
+    HJGuideSetViewController * HJGuideSetCtl = [[HJGuideSetViewController alloc] init];
+    [self.window setRootViewController:HJGuideSetCtl];
+}
+
+#pragma mark - 初始化屏幕宽高
+
+- (void)registeredGlobalWidthAndHeight {
+    //屏幕宽 高
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    [UtilityFunc shareInstance].globleWidth = screenRect.size.width; //屏幕宽度
+    [UtilityFunc shareInstance].globleHeight = screenRect.size.height-20;  //屏幕高度（无顶栏）
+    [UtilityFunc shareInstance].globleAllHeight = screenRect.size.height;  //屏幕高度（有顶栏）
+}
+
+#pragma mark -
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

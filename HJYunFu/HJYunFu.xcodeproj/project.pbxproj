@@ -119,6 +119,16 @@
 		9B67002C1975279200F7BB75 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B67002B1975279200F7BB75 /* libPushSDK.a */; };
 		9B67002E197527D900F7BB75 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B67002D197527D900F7BB75 /* CFNetwork.framework */; };
 		9B670030197527F200F7BB75 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B67002F197527F200F7BB75 /* CoreFoundation.framework */; };
+		9B84F247198F3C70002EF505 /* HJGuideSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B84F245198F3C70002EF505 /* HJGuideSetViewController.m */; };
+		9B84F248198F3C70002EF505 /* HJGuideSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B84F246198F3C70002EF505 /* HJGuideSetViewController.xib */; };
+		9B84F24A198F5EC8002EF505 /* top_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B84F249198F5EC8002EF505 /* top_img@2x.png */; };
+		9B84F24C198F678D002EF505 /* dueDate_select_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B84F24B198F678D002EF505 /* dueDate_select_img@2x.png */; };
+		9B84F24E198F69F6002EF505 /* dueDate_selectArrow_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B84F24D198F69F6002EF505 /* dueDate_selectArrow_img@2x.png */; };
+		9B84F252198F7A6A002EF505 /* HJMCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B84F251198F7A6A002EF505 /* HJMCustomTextField.m */; };
+		9B84F256198F8AF5002EF505 /* HJPeriodSwitchDueDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B84F255198F8AF5002EF505 /* HJPeriodSwitchDueDate.m */; };
+		9BDB059A1990BD2900EAD716 /* dateSelect_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB05991990BD2900EAD716 /* dateSelect_img.png */; };
+		9BDB059D1990D64000EAD716 /* nextBtn_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB059B1990D64000EAD716 /* nextBtn_img.png */; };
+		9BDB059E1990D64000EAD716 /* nextBtn_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB059C1990D64000EAD716 /* nextBtn_img@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +336,19 @@
 		9B67002B1975279200F7BB75 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		9B67002D197527D900F7BB75 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		9B67002F197527F200F7BB75 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		9B84F244198F3C70002EF505 /* HJGuideSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJGuideSetViewController.h; sourceTree = "<group>"; };
+		9B84F245198F3C70002EF505 /* HJGuideSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJGuideSetViewController.m; sourceTree = "<group>"; };
+		9B84F246198F3C70002EF505 /* HJGuideSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJGuideSetViewController.xib; sourceTree = "<group>"; };
+		9B84F249198F5EC8002EF505 /* top_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_img@2x.png"; sourceTree = "<group>"; };
+		9B84F24B198F678D002EF505 /* dueDate_select_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dueDate_select_img@2x.png"; sourceTree = "<group>"; };
+		9B84F24D198F69F6002EF505 /* dueDate_selectArrow_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dueDate_selectArrow_img@2x.png"; sourceTree = "<group>"; };
+		9B84F250198F7A6A002EF505 /* HJMCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMCustomTextField.h; sourceTree = "<group>"; };
+		9B84F251198F7A6A002EF505 /* HJMCustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMCustomTextField.m; sourceTree = "<group>"; };
+		9B84F254198F8AF5002EF505 /* HJPeriodSwitchDueDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJPeriodSwitchDueDate.h; sourceTree = "<group>"; };
+		9B84F255198F8AF5002EF505 /* HJPeriodSwitchDueDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJPeriodSwitchDueDate.m; sourceTree = "<group>"; };
+		9BDB05991990BD2900EAD716 /* dateSelect_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dateSelect_img.png; sourceTree = "<group>"; };
+		9BDB059B1990D64000EAD716 /* nextBtn_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextBtn_img.png; sourceTree = "<group>"; };
+		9BDB059C1990D64000EAD716 /* nextBtn_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextBtn_img@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +495,8 @@
 				9B28BC43197378FD009A5500 /* CONST.h */,
 				9B6700271975276400F7BB75 /* PushConfig.plist */,
 				9B6700251975272400F7BB75 /* sound.caf */,
+				9B84F253198F8AA5002EF505 /* Period_DueDate */,
+				9B84F24F198F7A58002EF505 /* customTextField_noCopy */,
 				9B6700291975279200F7BB75 /* lib */,
 				9B28BD3B1974DD22009A5500 /* UMSocial_Sdk_Extra_Frameworks */,
 				9B28BCF51974DA9E009A5500 /* UMSocial_Sdk_4.0 */,
@@ -514,6 +539,7 @@
 		9B28BC241973785E009A5500 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9B84F243198F3C48002EF505 /* Guide */,
 				9B28BCDA1973AF32009A5500 /* LeftViewControllers */,
 				9B28BCDB1973AF32009A5500 /* RightViewControllers */,
 				9B28BCBD1973AE74009A5500 /* ShouYe */,
@@ -742,6 +768,12 @@
 		9B28BCAD19737925009A5500 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9BDB059B1990D64000EAD716 /* nextBtn_img.png */,
+				9BDB059C1990D64000EAD716 /* nextBtn_img@2x.png */,
+				9BDB05991990BD2900EAD716 /* dateSelect_img.png */,
+				9B84F24D198F69F6002EF505 /* dueDate_selectArrow_img@2x.png */,
+				9B84F24B198F678D002EF505 /* dueDate_select_img@2x.png */,
+				9B84F249198F5EC8002EF505 /* top_img@2x.png */,
 				9B28BCEE1974C450009A5500 /* test.png */,
 				9B28BCEC1974C41C009A5500 /* test@2x.png */,
 			);
@@ -997,6 +1029,34 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		9B84F243198F3C48002EF505 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				9B84F244198F3C70002EF505 /* HJGuideSetViewController.h */,
+				9B84F245198F3C70002EF505 /* HJGuideSetViewController.m */,
+				9B84F246198F3C70002EF505 /* HJGuideSetViewController.xib */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		9B84F24F198F7A58002EF505 /* customTextField_noCopy */ = {
+			isa = PBXGroup;
+			children = (
+				9B84F250198F7A6A002EF505 /* HJMCustomTextField.h */,
+				9B84F251198F7A6A002EF505 /* HJMCustomTextField.m */,
+			);
+			path = customTextField_noCopy;
+			sourceTree = "<group>";
+		};
+		9B84F253198F8AA5002EF505 /* Period_DueDate */ = {
+			isa = PBXGroup;
+			children = (
+				9B84F254198F8AF5002EF505 /* HJPeriodSwitchDueDate.h */,
+				9B84F255198F8AF5002EF505 /* HJPeriodSwitchDueDate.m */,
+			);
+			path = Period_DueDate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1045,6 +1105,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = HuaJinMedia;
 				TargetAttributes = {
+					9B28BBE2197254AC009A5500 = {
+						DevelopmentTeam = D7ZB5A25F4;
+					};
 					9B28BBFD197254AC009A5500 = {
 						TestTargetID = 9B28BBE2197254AC009A5500;
 					};
@@ -1080,10 +1143,14 @@
 				9B28BD281974DB6B009A5500 /* UMSLoginViewController.xib in Resources */,
 				9B28BCD41973AEDD009A5500 /* HJTiXingViewController.xib in Resources */,
 				9B28BD231974DB6B009A5500 /* UMSCommentDetailController.xib in Resources */,
+				9B84F248198F3C70002EF505 /* HJGuideSetViewController.xib in Resources */,
 				9B28BD291974DB6B009A5500 /* UMSnsAccountViewController.xib in Resources */,
+				9BDB059A1990BD2900EAD716 /* dateSelect_img.png in Resources */,
 				9B28BD241974DB6B009A5500 /* UMSCommentInputController.xib in Resources */,
+				9B84F24C198F678D002EF505 /* dueDate_select_img@2x.png in Resources */,
 				9B28BD251974DB6B009A5500 /* UMSCommentInputControlleriPad.xib in Resources */,
 				9B28BCE51973AF5E009A5500 /* HJRightViewController.xib in Resources */,
+				9BDB059E1990D64000EAD716 /* nextBtn_img@2x.png in Resources */,
 				9B28BCCF1973AECD009A5500 /* HJGongJuViewController.xib in Resources */,
 				9B28BBF1197254AC009A5500 /* InfoPlist.strings in Resources */,
 				9B28BD351974DBD7009A5500 /* UMSocialLocalizable.strings in Resources */,
@@ -1092,12 +1159,15 @@
 				9B28BCCA1973AEBE009A5500 /* HJSouSuoViewController.xib in Resources */,
 				9B6700281975276400F7BB75 /* PushConfig.plist in Resources */,
 				9B28BCC51973AEA2009A5500 /* HJShouYeViewController.xib in Resources */,
+				9B84F24E198F69F6002EF505 /* dueDate_selectArrow_img@2x.png in Resources */,
 				9B28BCA0197378FE009A5500 /* SVProgressHUD.bundle in Resources */,
 				9B28BD271974DB6B009A5500 /* UMShareEditViewControlleriPad.xib in Resources */,
 				9B6700261975272400F7BB75 /* sound.caf in Resources */,
 				9B28BD2A1974DB6B009A5500 /* UMSShareListController.xib in Resources */,
 				9B28BD301974DB7B009A5500 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				9B28BCD91973AEE8009A5500 /* HJWoViewController.xib in Resources */,
+				9B84F24A198F5EC8002EF505 /* top_img@2x.png in Resources */,
+				9BDB059D1990D64000EAD716 /* nextBtn_img.png in Resources */,
 				9B28BCF41974C8B2009A5500 /* HJMTabBar.xib in Resources */,
 				9B28BBF9197254AC009A5500 /* Images.xcassets in Resources */,
 			);
@@ -1127,6 +1197,8 @@
 				9B28BC9F197378FE009A5500 /* Reachability.m in Sources */,
 				9B28BC271973785E009A5500 /* NSData+CommonCrypto.m in Sources */,
 				9B28BCA6197378FE009A5500 /* UIImageView+AFNetworking.m in Sources */,
+				9B84F256198F8AF5002EF505 /* HJPeriodSwitchDueDate.m in Sources */,
+				9B84F252198F7A6A002EF505 /* HJMCustomTextField.m in Sources */,
 				9B28BCA9197378FE009A5500 /* UIWebView+AFNetworking.m in Sources */,
 				9B28BC90197378FD009A5500 /* AFURLResponseSerialization.m in Sources */,
 				9B28BC8C197378FD009A5500 /* AFURLSessionManager.m in Sources */,
@@ -1140,6 +1212,7 @@
 				9B28BCAB197378FE009A5500 /* UtilityFunc.m in Sources */,
 				9B28BC9B197378FE009A5500 /* MMDrawerBarButtonItem.m in Sources */,
 				9B28BCD81973AEE8009A5500 /* HJWoViewController.m in Sources */,
+				9B84F247198F3C70002EF505 /* HJGuideSetViewController.m in Sources */,
 				9B28BC98197378FD009A5500 /* JDStatusBarNotification.m in Sources */,
 				9B28BCA5197378FE009A5500 /* UIButton+AFNetworking.m in Sources */,
 				9B28BBF3197254AC009A5500 /* main.m in Sources */,
@@ -1235,7 +1308,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shali wang (ZW24N86QLV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shali wang (ZW24N86QLV)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1252,7 +1326,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "948E55A6-BA3E-463A-B0A2-6A4C2580AE11";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv6 armv7";
 			};
@@ -1274,7 +1349,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shali wang (ZW24N86QLV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shali wang (ZW24N86QLV)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1285,6 +1361,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PROVISIONING_PROFILE = "948E55A6-BA3E-463A-B0A2-6A4C2580AE11";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv6 armv7";
@@ -1294,8 +1371,7 @@
 		9B28BC10197254AC009A5500 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: shali wang (ZW24N86QLV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HJYunFu/Vendors/UMSocial_Sdk_Extra_Frameworks/Renren",
@@ -1322,6 +1398,7 @@
 					"$(PROJECT_DIR)/HJYunFu/Vendors/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "948E55A6-BA3E-463A-B0A2-6A4C2580AE11";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendors/[lib]";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
@@ -1331,8 +1408,7 @@
 		9B28BC11197254AC009A5500 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: shali wang (ZW24N86QLV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HJYunFu/Vendors/UMSocial_Sdk_Extra_Frameworks/Renren",
@@ -1359,6 +1435,7 @@
 					"$(PROJECT_DIR)/HJYunFu/Vendors/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "948E55A6-BA3E-463A-B0A2-6A4C2580AE11";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Vendors/[lib]";
 				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;

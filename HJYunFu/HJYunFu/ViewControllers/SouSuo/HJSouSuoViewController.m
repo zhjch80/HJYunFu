@@ -30,6 +30,26 @@
     
     self.view.backgroundColor = [UIColor yellowColor];
     [self loadRequest];
+    
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    addButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    addButton.layer.borderWidth = 2.0;
+    addButton.layer.cornerRadius = 10.0;
+    addButton.titleLabel.font = [UIFont systemFontOfSize:54.0];
+    addButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [addButton sizeToFit];
+    [addButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.0, 0.0, 0.0, 0.0)];
+    [addButton setFrame:CGRectMake(0.0, 5.0, 60.0, 60.0)];
+    [addButton setTitle:@"+" forState:UIControlStateNormal];
+    [addButton addTarget:self
+                  action:@selector(addAction:)
+        forControlEvents:UIControlEventTouchUpInside];
+
+    
+}
+
+- (void)addAction:(UIButton *)sender {
+    NSLog(@"addAction");
 }
 
 - (void)loadRequest {
@@ -50,9 +70,16 @@
     }];
 
 
-    
+    /*
+     
+     回太原办的事
+     档案 管理  人才市场  孔莉
+     转户口
+     党员转正
+     
+     
+     */
 
-    
 }
 
 - (void)didReceiveMemoryWarning

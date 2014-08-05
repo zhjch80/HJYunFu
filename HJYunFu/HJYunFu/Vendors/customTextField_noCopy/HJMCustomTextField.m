@@ -19,23 +19,23 @@
     return self;
 }
 
--(CGRect)textRectForBounds:(CGRect)bounds{
-    
-    return CGRectMake(40, 0, bounds.size.width-40, bounds.size.height);
-    
-}
-
--(CGRect)editingRectForBounds:(CGRect)bounds{
-    
-    return CGRectMake(40, 0, bounds.size.width-40, bounds.size.height);
-    
-}
-
--(CGRect)placeholderRectForBounds:(CGRect)bounds{
-    
-    return CGRectMake(40, 0, bounds.size.width-40, bounds.size.height);
-    
-}
+//-(CGRect)textRectForBounds:(CGRect)bounds{
+//    
+//    return CGRectMake(40, 0, bounds.size.width-40, bounds.size.height);
+//    
+//}
+//
+//-(CGRect)editingRectForBounds:(CGRect)bounds{
+//    
+//    return CGRectMake(40, 0, bounds.size.width-40, bounds.size.height);
+//    
+//}
+//
+//-(CGRect)placeholderRectForBounds:(CGRect)bounds{
+//    
+//    return CGRectMake(40, 0, bounds.size.width-40, bounds.size.height);
+//    
+//}
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender {
     UIMenuController *menuController = [UIMenuController sharedMenuController];

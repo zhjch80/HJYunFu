@@ -24,11 +24,25 @@
 #define APP_GIVEUSSCORE
 
 
+#define kFirstLaunch                    @"firstLaunch"
+#define kEverLaunched                   @"everLaunched"
 
+#define kImageTypePNG @"png"
+#define LOADIMAGE(file,ext)   [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
 
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
+#define LANTING_FONT(_size) [UIFont fontWithName:@"Heiti SC" size:(_size)]
 
-
+//familyName,fontName  :Microsoft YaHei - MicrosoftYaHei
+/*
+Family name: Heiti SC
+Font name: STHeitiSC-Medium
+Font name: STHeitiSC-Light
+Family name: Heiti TC
+Font name: STHeitiTC-Medium
+Font name: STHeitiTC-Light
+*/
 
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)

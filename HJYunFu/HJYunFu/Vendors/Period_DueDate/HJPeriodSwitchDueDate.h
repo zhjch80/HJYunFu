@@ -10,4 +10,15 @@
 
 @interface HJPeriodSwitchDueDate : NSObject
 
+
+/**
+ 根据预产期推算末次月经期
+ */
++ (NSString *)lastMenstrualPeriodFromDueDate:(NSString *)string;
+
+/**
+ 根据末次月经期推算预产期
+ */
++ (NSString *)dueDateFromLastMenstrualPeriod:(NSString *)string;
+
 @end
