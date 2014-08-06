@@ -23,7 +23,6 @@
 #define lastMenstrualPeriodFirstResponder       @"lastMenstrualPeriod"
 #define dueDateFromFirstResponder               @"dueDate"
 
-
 @interface HJGuideSetViewController (){
 
 }
@@ -145,6 +144,7 @@
     SelectPromptWords_1.font = LANTING_FONT(20);
     SelectPromptWords_1.inputView = self.datePicker_1;
     SelectPromptWords_1.inputAccessoryView = self.keyboardToolbar;
+    [[HJMCustomTextField appearance] setTintColor:[UIColor colorWithRed:0.98 green:0.58 blue:0.65 alpha:1]];
     [self.view addSubview:SelectPromptWords_1];
     
     UILabel * tip = [[UILabel alloc] initWithFrame:CGRectMake(10, 120, 593/2, 78/2)];
@@ -183,6 +183,7 @@
     SelectPromptWords_2.font = LANTING_FONT(20);
     SelectPromptWords_2.inputView = self.datePicker_2;
     SelectPromptWords_2.inputAccessoryView = self.keyboardToolbar;
+    [[HJMCustomTextField appearance] setTintColor:[UIColor colorWithRed:0.98 green:0.58 blue:0.65 alpha:1]];
     [self.view addSubview:SelectPromptWords_2];
     
     UIButton * nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -195,7 +196,7 @@
 }
 
 - (void)buttonClick:(UIButton *)sender {
-    
+    NSLog(@"next");
 }
 
 - (void)datePickerValueChanged:(UIDatePicker *)datePic {
@@ -266,6 +267,14 @@
         SelectPromptWords_2.text = dateStr;
         [self rightMarkSwitch];
     }
+    
+    CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+    [storage beginUpdates];
+    NSString * str_1 = [AESCrypt encrypt:SelectPromptWords_1.text password:PASSWORD];
+    NSString * str_2 = [AESCrypt encrypt:SelectPromptWords_2.text password:PASSWORD];
+    [storage setObject:str_1 forKey:MOCIYUEJINGQI_KEY];
+    [storage setObject:str_2 forKey:YUCHANQI_KEY];
+    [storage endUpdates];
 }
 
 #pragma mark - 切换

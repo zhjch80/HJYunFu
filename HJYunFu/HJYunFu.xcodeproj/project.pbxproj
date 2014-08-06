@@ -126,7 +126,6 @@
 		9B84F24E198F69F6002EF505 /* dueDate_selectArrow_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B84F24D198F69F6002EF505 /* dueDate_selectArrow_img@2x.png */; };
 		9B84F252198F7A6A002EF505 /* HJMCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B84F251198F7A6A002EF505 /* HJMCustomTextField.m */; };
 		9B84F256198F8AF5002EF505 /* HJPeriodSwitchDueDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B84F255198F8AF5002EF505 /* HJPeriodSwitchDueDate.m */; };
-		9BDB059A1990BD2900EAD716 /* dateSelect_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB05991990BD2900EAD716 /* dateSelect_img.png */; };
 		9BDB059D1990D64000EAD716 /* nextBtn_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB059B1990D64000EAD716 /* nextBtn_img.png */; };
 		9BDB059E1990D64000EAD716 /* nextBtn_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BDB059C1990D64000EAD716 /* nextBtn_img@2x.png */; };
 /* End PBXBuildFile section */
@@ -346,7 +345,6 @@
 		9B84F251198F7A6A002EF505 /* HJMCustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMCustomTextField.m; sourceTree = "<group>"; };
 		9B84F254198F8AF5002EF505 /* HJPeriodSwitchDueDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJPeriodSwitchDueDate.h; sourceTree = "<group>"; };
 		9B84F255198F8AF5002EF505 /* HJPeriodSwitchDueDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJPeriodSwitchDueDate.m; sourceTree = "<group>"; };
-		9BDB05991990BD2900EAD716 /* dateSelect_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dateSelect_img.png; sourceTree = "<group>"; };
 		9BDB059B1990D64000EAD716 /* nextBtn_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextBtn_img.png; sourceTree = "<group>"; };
 		9BDB059C1990D64000EAD716 /* nextBtn_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextBtn_img@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -770,7 +768,6 @@
 			children = (
 				9BDB059B1990D64000EAD716 /* nextBtn_img.png */,
 				9BDB059C1990D64000EAD716 /* nextBtn_img@2x.png */,
-				9BDB05991990BD2900EAD716 /* dateSelect_img.png */,
 				9B84F24D198F69F6002EF505 /* dueDate_selectArrow_img@2x.png */,
 				9B84F24B198F678D002EF505 /* dueDate_select_img@2x.png */,
 				9B84F249198F5EC8002EF505 /* top_img@2x.png */,
@@ -1145,7 +1142,6 @@
 				9B28BD231974DB6B009A5500 /* UMSCommentDetailController.xib in Resources */,
 				9B84F248198F3C70002EF505 /* HJGuideSetViewController.xib in Resources */,
 				9B28BD291974DB6B009A5500 /* UMSnsAccountViewController.xib in Resources */,
-				9BDB059A1990BD2900EAD716 /* dateSelect_img.png in Resources */,
 				9B28BD241974DB6B009A5500 /* UMSCommentInputController.xib in Resources */,
 				9B84F24C198F678D002EF505 /* dueDate_select_img@2x.png in Resources */,
 				9B28BD251974DB6B009A5500 /* UMSCommentInputControlleriPad.xib in Resources */,
