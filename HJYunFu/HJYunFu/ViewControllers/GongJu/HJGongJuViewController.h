@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJGongJuViewController : UIViewController
+@interface HJGongJuViewController : HJBaseViewController
 
 @end

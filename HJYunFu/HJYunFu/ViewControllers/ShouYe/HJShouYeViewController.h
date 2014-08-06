@@ -10,7 +10,7 @@
 #import "UMSocialControllerService.h"
 #import "UMSocialSnsService.h"
 
-@interface HJShouYeViewController : UIViewController<UMSocialUIDelegate>{
+@interface HJShouYeViewController : HJBaseViewController<UMSocialUIDelegate>{
     
 }
 

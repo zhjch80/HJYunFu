@@ -45,7 +45,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-//    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kFirstLaunch];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kFirstLaunch];
 }
 
 - (void)viewDidLoad
@@ -193,10 +193,11 @@
     nextBtn.tag = nextBtn_TAG;
     [nextBtn setBackgroundImage:LOADIMAGE(@"nextBtn_img", kImageTypePNG) forState:UIControlStateNormal];
     [self.view addSubview:nextBtn];
+    
 }
 
 - (void)buttonClick:(UIButton *)sender {
-    NSLog(@"next");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SwitchoverRootViewControllerMethod" object:nil];
 }
 
 - (void)datePickerValueChanged:(UIDatePicker *)datePic {

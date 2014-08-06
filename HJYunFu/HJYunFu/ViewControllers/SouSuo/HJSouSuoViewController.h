@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJSouSuoViewController : UIViewController
+@interface HJSouSuoViewController : HJBaseViewController
 
 @end

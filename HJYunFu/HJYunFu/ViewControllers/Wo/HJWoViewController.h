@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJWoViewController : UIViewController
+@interface HJWoViewController : HJBaseViewController
 
 @end

@@ -53,6 +53,8 @@
     
     [self registeredGlobalWidthAndHeight];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SwitchoverRootViewControllerMethod) name:@"SwitchoverRootViewControllerMethod" object:nil];
+
     
     //  友盟的方法本身是异步执行，所以不需要再异步调用
     [self umengTrack];
@@ -75,6 +77,13 @@
     
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+#pragma mark - 切换RootViewController
+
+- (void)SwitchoverRootViewControllerMethod {
+    [self initMainViewControllers];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 #pragma mark - 极光推送
@@ -185,9 +194,9 @@
     
     NSArray * ctlsArr = [NSArray arrayWithObjects:shouYeNav, souSuoNav, gongJuNav, tiXingNav, woNav, nil];
 
-    NSArray * normalImageArray = [[NSArray alloc] initWithObjects:@"test", @"test", @"test", @"test", @"test", nil];
+    NSArray * normalImageArray = [[NSArray alloc] initWithObjects:@"icon_shouye_img", @"icon_sousuo_img", @"icon_gongju_img", @"icon_tixing_img", @"icon_wo_img", nil];
     
-    NSArray * selectedImageArray = [[NSArray alloc] initWithObjects:@"test", @"test", @"test", @"test", @"test", nil];
+    NSArray * selectedImageArray = [[NSArray alloc] initWithObjects:@"icon_current_shouye_img", @"icon_current_sousuo_img", @"icon_current_gongju_img", @"icon_current_tixing_img", @"icon_current_wo_img", nil];
     
     HJMTabBar * customTab = [[HJMTabBar alloc] init];
     [customTab setTabWithArray:ctlsArr NormalImageArray:normalImageArray SelectedImageArray:selectedImageArray];

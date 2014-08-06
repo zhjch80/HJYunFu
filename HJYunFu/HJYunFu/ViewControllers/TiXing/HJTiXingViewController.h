@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJTiXingViewController : UIViewController
+@interface HJTiXingViewController : HJBaseViewController
 
 @end
