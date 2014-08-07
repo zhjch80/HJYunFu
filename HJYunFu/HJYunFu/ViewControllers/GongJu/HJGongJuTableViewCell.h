@@ -12,5 +12,8 @@
 @property (nonatomic, strong) UIImageView * bgImg;
 @property (nonatomic, strong) UIImageView * headImg;
 @property (nonatomic, strong) UIImageView * verticalImg;
+@property (nonatomic, strong) UILabel * mtitle;
+@property (nonatomic, strong) UILabel * subTitle;
+@property (nonatomic, strong) UIImageView * arrowImg;
 
 @end

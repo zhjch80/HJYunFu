@@ -7,8 +7,10 @@
 //
 
 #import "HJShouYeViewController.h"
+#import "SYTableViewHead.h"
+#import "SYTableViewFoot.h"
 
-@interface HJShouYeViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface HJShouYeViewController ()<UITableViewDataSource,UITableViewDelegate,BtnsClickEventDelegate>
 
 @end
 
@@ -28,14 +30,83 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
+    
+    CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+    NSString * str_1 = [AESCrypt decrypt:[storage objectForKey:MOCIYUEJINGQI_KEY] password:PASSWORD];
+    NSString * str_2 = [AESCrypt decrypt:[storage objectForKey:YUCHANQI_KEY] password:PASSWORD];
+    NSLog(@"末次月经期:%@ 预产期:%@",str_1,str_2);
+    
+    
+    /*
+    
+    孕周计算方法：
+    从末次月经开始的第一天算起，每7天为一周
+     
+     
+    孕月：
+    孕1月（孕0-4周）、孕2月（孕5-8周）、孕3月（孕9-12周）、孕4月（孕13-16周）、孕5月（孕17-20周）、孕6月（孕21-24周）、孕7月（孕25-28周）、孕8月（孕29-32周）、孕9月（孕33-36周）、孕10月（孕37-40周）
+     
+     
+    出生日计算方法：
+    孕期共280天，用280天减去怀孕的天数
+    
+    
+     */
+    
+    
+    
     [self loadNavBarWithTitle:@"健康孕期"];
 
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight) style:UITableViewStylePlain];
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
 
+    SYTableViewFoot * SYFootView = [[SYTableViewFoot alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, 197/2)];
+    SYFootView.delegate = self;
+    tableView.tableFooterView = SYFootView;
     
+    SYTableViewHead * SYHeadView = [[SYTableViewHead alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, 503/2)];
+    tableView.tableHeaderView = SYHeadView;
+    
+    
+    /*
+     
+    前12周  没有三项数据  文字长点
+     
+    孕周算法  距生产日算法  
+     
+     head clik to 发育页面
+     
+     list data  妈 变化 必读根据孕周
+     
+     本月  是根据 孕月
+     
+     */
+}
+
+#pragma mark - BtnsClickEventDelegate
+- (void)btnsClickEvent:(NSInteger)value {
+    switch (value) {
+        case 101:{
+            NSLog(@"评分");
+            break;
+        }
+        case 102:{
+            NSLog(@"分享");
+            break;
+        }
+        case 103:{
+            NSLog(@"反馈");
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - 导航 NavBar
@@ -49,10 +120,6 @@
                                                            [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
                                                            shadow, NSShadowAttributeName, LANTING_FONT(24.0)
                                                            , NSFontAttributeName, nil]];
-    
-    //自定义返回
-//    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back_btn.png"]];
-//    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back_btn.png"]];
 }
 
 #pragma mark - UITableViewDelegate
@@ -62,12 +129,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * celld = @"123";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:celld];
+    NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:celld];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.textLabel.text = @"123";
+    cell.textLabel.text = @"cell";
     return  cell;
 }
 

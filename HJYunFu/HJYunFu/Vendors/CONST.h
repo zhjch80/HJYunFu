@@ -42,6 +42,13 @@
 #define PASSWORD                                    @"password"
 
 
+
+#define kHideTabbar                     @"hideTabbar"
+#define kAppearTabbar                   @"appearTabbar"
+
+
+
+
 #define kFirstLaunch                    @"firstLaunch"
 #define kEverLaunched                   @"everLaunched"
 

@@ -56,7 +56,7 @@
     
     UIImageView * topImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, 64)];
     topImg.backgroundColor = [UIColor clearColor];
-    topImg.image = LOADIMAGE(@"top_img@2x", kImageTypePNG);
+    topImg.image = LOADIMAGE(@"xz_top_img@2x", kImageTypePNG);
     [self.view addSubview:topImg];
     
     UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, [UtilityFunc shareInstance].globleWidth, 44)];
@@ -68,12 +68,12 @@
     [topImg addSubview:title];
     
     UIImageView * selectImg_1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 80, 593/2, 78/2)];
-    selectImg_1.image = LOADIMAGE(@"dueDate_select_img@2x", kImageTypePNG);
+    selectImg_1.image = LOADIMAGE(@"xz_dueDate_select_img@2x", kImageTypePNG);
     [self.view addSubview:selectImg_1];
 
     UIImageView * arrowImg_1 = [[UIImageView alloc] initWithFrame:CGRectMake(290, 95, 14/2, 16/2)];
     arrowImg_1.tag = arrowImg_1_TAG;
-    arrowImg_1.image = LOADIMAGE(@"dueDate_selectArrow_img@2x", kImageTypePNG);
+    arrowImg_1.image = LOADIMAGE(@"xz_dueDate_selectArrow_img@2x", kImageTypePNG);
     [self.view addSubview:arrowImg_1];
     
     UILabel * successTip_1 = [[UILabel alloc] initWithFrame:CGRectMake(220, 85, 80, 30)];
@@ -156,12 +156,12 @@
     [self.view addSubview:tip];
 
     UIImageView * selectImg_2 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 170, 593/2, 78/2)];
-    selectImg_2.image = LOADIMAGE(@"dueDate_select_img@2x", kImageTypePNG);
+    selectImg_2.image = LOADIMAGE(@"xz_dueDate_select_img@2x", kImageTypePNG);
     [self.view addSubview:selectImg_2];
     
     UIImageView * arrowImg_2 = [[UIImageView alloc] initWithFrame:CGRectMake(290, 185, 14/2, 16/2)];
     arrowImg_2.tag = arrowImg_2_TAG;
-    arrowImg_2.image = LOADIMAGE(@"dueDate_selectArrow_img@2x", kImageTypePNG);
+    arrowImg_2.image = LOADIMAGE(@"xz_dueDate_selectArrow_img@2x", kImageTypePNG);
     [self.view addSubview:arrowImg_2];
     
     UILabel * successTip_2 = [[UILabel alloc] initWithFrame:CGRectMake(220, 175, 80, 30)];
@@ -191,7 +191,7 @@
     nextBtn.frame = CGRectMake(55, 240, 204, 34);
     [nextBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     nextBtn.tag = nextBtn_TAG;
-    [nextBtn setBackgroundImage:LOADIMAGE(@"nextBtn_img", kImageTypePNG) forState:UIControlStateNormal];
+    [nextBtn setBackgroundImage:LOADIMAGE(@"xz_nextBtn_img", kImageTypePNG) forState:UIControlStateNormal];
     [self.view addSubview:nextBtn];
     
 }

@@ -23,19 +23,26 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //开启ios右滑返回
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kHideTabbar object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+//    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+
     [self loadNavBarWithTitle:@"预产期计算器"];
-    
-//    UIButton * btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    btn.frame = CGRectMake(0, 440, 100, 44);
-//    btn.backgroundColor = [UIColor redColor];
-//    [btn addTarget:self action:@selector(buttonC) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:btn];
-//
     
     
 }
@@ -52,13 +59,13 @@
                                                            shadow, NSShadowAttributeName, LANTING_FONT(24.0)
                                                            , NSFontAttributeName, nil]];
     
-    
-    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"dueDate_selectArrow_img@2x"]];
-    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"dueDate_selectArrow_img@2x"]];
+    UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:LOADIMAGE(@"back", kImageTypePNG) style:UIBarButtonItemStylePlain target:self action:@selector(backUpClick) ];
+    leftBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = leftBar;
 }
 
-- (void)buttonC{
-    NSLog(@"click!!!!");
+- (void)backUpClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

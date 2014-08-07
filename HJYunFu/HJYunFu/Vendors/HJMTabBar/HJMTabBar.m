@@ -22,8 +22,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideTabBar:) name:@"hideTabbar" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appearTabBar:) name:@"appearTabbar" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideTabBar:) name:kHideTabbar object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appearTabBar:) name:kAppearTabbar object:nil];
         
         //隐藏侧滑
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSlideDrawerMethods:) name:@"hideSlideDrawerMethods" object:nil];
@@ -91,6 +91,7 @@
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             [btn setBackgroundImage:[UIImage imageNamed:[selectedArray objectAtIndex:i]] forState:UIControlStateSelected];
             [btn setBackgroundImage:[UIImage imageNamed:[normalArray objectAtIndex:i]] forState:UIControlStateNormal];
+            [btn setAdjustsImageWhenHighlighted:NO];
             btn.tag = i ;
             if (btn.tag == 0)
                 btn.selected = YES;

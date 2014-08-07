@@ -21,4 +21,20 @@
  */
 + (NSString *)dueDateFromLastMenstrualPeriod:(NSString *)string;
 
+/**
+ 通过末次月经期计算出孕周
+ */
++ (NSString *)gestationalAgeFromLastMenstrualPeriod:(NSString *)string;
+
+/**
+ 通过末次月经期计算出孕月
+ */
++ (NSString *)monthOfPregnancyFromLastMenstrualPeriod:(NSString *)string;
+
+/**
+ 计算出距生产日还有几天
+ */
++ (NSString *)howManyDaysInTotalFromLastMenstrualPeriod:(NSString *)string;
+
+
 @end

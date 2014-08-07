@@ -27,7 +27,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self loadNavBarWithTitle:@""];
+
+    self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
+
+    [self loadNavBarWithTitle:@"我"];
 }
 
 #pragma mark - 导航 NavBar

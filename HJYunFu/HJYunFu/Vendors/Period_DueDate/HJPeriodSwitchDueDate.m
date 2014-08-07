@@ -298,4 +298,32 @@
     return [NSString stringWithFormat:@"%d-%@-%@",year,newMonth,newDay];
 }
 
+/**
+ 通过末次月经期计算当天处于孕周的第几周的第几天
+ */
++ (NSString *)gestationalAgeFromLastMenstrualPeriod:(NSString *)string {
+    string = @"2013-08-09";
+    
+    return @"";
+}
+
+/**
+ 通过末次月经期计算当天处于孕月的月份且第几天
+ */
++ (NSString *)monthOfPregnancyFromLastMenstrualPeriod:(NSString *)string {
+    
+    return @"";
+}
+
+/**
+ 通过末次月经期计算出当天距生产日还有几天
+ */
++ (NSString *)howManyDaysInTotalFromLastMenstrualPeriod:(NSString *)string {
+    
+    return @"";
+}
+
+
+
+
 @end
