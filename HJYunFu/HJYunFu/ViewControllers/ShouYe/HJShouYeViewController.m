@@ -9,6 +9,7 @@
 #import "HJShouYeViewController.h"
 #import "SYTableViewHead.h"
 #import "SYTableViewFoot.h"
+#import "HJPeriodSwitchDueDate.h"
 
 @interface HJShouYeViewController ()<UITableViewDataSource,UITableViewDelegate,BtnsClickEventDelegate>
 
@@ -37,25 +38,13 @@
     NSString * str_2 = [AESCrypt decrypt:[storage objectForKey:YUCHANQI_KEY] password:PASSWORD];
     NSLog(@"末次月经期:%@ 预产期:%@",str_1,str_2);
     
+    //以下都是根据末次月经期计算得出：
+    NSLog(@"孕周:%@,天数:%@.",[[HJPeriodSwitchDueDate gestationalAgeFromLastMenstrualPeriod:@"2014-01-10"] objectForKey:@"AfterTheWeeks"],[[HJPeriodSwitchDueDate gestationalAgeFromLastMenstrualPeriod:@"2014-01-10"] objectForKey:@"AfterTheDays"]);
     
-    /*
+    NSLog(@"孕月:%@",[HJPeriodSwitchDueDate monthOfPregnancyFromGestationalAge:[[[HJPeriodSwitchDueDate gestationalAgeFromLastMenstrualPeriod:@"2014-01-10"] objectForKey:@"AfterTheWeeks"] integerValue]]);
     
-    孕周计算方法：
-    从末次月经开始的第一天算起，每7天为一周
-     
-     
-    孕月：
-    孕1月（孕0-4周）、孕2月（孕5-8周）、孕3月（孕9-12周）、孕4月（孕13-16周）、孕5月（孕17-20周）、孕6月（孕21-24周）、孕7月（孕25-28周）、孕8月（孕29-32周）、孕9月（孕33-36周）、孕10月（孕37-40周）
-     
-     
-    出生日计算方法：
-    孕期共280天，用280天减去怀孕的天数
-    
-    
-     */
-    
-    
-    
+    NSLog(@"距生产日:%@",[HJPeriodSwitchDueDate howManyDaysInTotalFromLastMenstrualPeriod:[[[HJPeriodSwitchDueDate gestationalAgeFromLastMenstrualPeriod:@"2014-01-10"] objectForKey:@"totalDays"] integerValue]]);
+
     [self loadNavBarWithTitle:@"健康孕期"];
 
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight) style:UITableViewStylePlain];
@@ -77,15 +66,13 @@
      
     前12周  没有三项数据  文字长点
      
-    孕周算法  距生产日算法  
+    head clik to 发育页面
      
-     head clik to 发育页面
+    list data  妈 变化 必读根据孕周
      
-     list data  妈 变化 必读根据孕周
-     
-     本月  是根据 孕月
-     
-     */
+    本月  是根据 孕月
+
+    */
 }
 
 #pragma mark - BtnsClickEventDelegate
