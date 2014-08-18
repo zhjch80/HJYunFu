@@ -134,39 +134,88 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
             HJDueDateCalculatorViewController * HJDueDateCalculatorCtl = [[HJDueDateCalculatorViewController alloc] init];
             [self.navigationController pushViewController:HJDueDateCalculatorCtl animated:YES];
+            //开启iOS7的滑动返回效果
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+            }
             break;
         }
         case 1:{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
             HJBoyOrGirlViewController * HJBoyOrGirlCtl = [[HJBoyOrGirlViewController alloc] init];
             [self.navigationController pushViewController:HJBoyOrGirlCtl animated:YES];
+            //开启iOS7的滑动返回效果
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+            }
             break;
         }
         case 2:{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
             HJBabyHeightPredictionViewController * HJBabyHeightPredictionCtl = [[HJBabyHeightPredictionViewController alloc] init];
             [self.navigationController pushViewController:HJBabyHeightPredictionCtl animated:YES];
+            //开启iOS7的滑动返回效果
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+            }
             break;
         }
         case 3:{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
             HJBabysBloodTypePredictionViewController * HJBabysBloodTypePredictionCtl = [[HJBabysBloodTypePredictionViewController alloc] init];
             [self.navigationController pushViewController:HJBabysBloodTypePredictionCtl animated:YES];
+            //开启iOS7的滑动返回效果
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+            }
             break;
         }
         case 4:{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
             HJSeedlingInoculationPlanViewController * HJSeedlingInoculationPlanCtl = [[HJSeedlingInoculationPlanViewController alloc] init];
             [self.navigationController pushViewController:HJSeedlingInoculationPlanCtl animated:YES];
+            //开启iOS7的滑动返回效果
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+            }
             break;
         }
         case 5:{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
             HJPregnancyCheckViewController * HJPregnancyCheckCtl = [[HJPregnancyCheckViewController alloc] init];
             [self.navigationController pushViewController:HJPregnancyCheckCtl animated:YES];
+            //开启iOS7的滑动返回效果
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+            }
             break;
         }
             
         case 6:{
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            }
             HJExpectantFatherRequiredViewController * HJExpectantFatherRequiredCtl = [[HJExpectantFatherRequiredViewController alloc] init];
             [self.navigationController pushViewController:HJExpectantFatherRequiredCtl animated:YES];
+            //开启iOS7的滑动返回效果
+            if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+                self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+            }
             break;
         }
  

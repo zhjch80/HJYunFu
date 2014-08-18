@@ -24,6 +24,7 @@
 #define dueDateFromFirstResponder               @"dueDate"
 
 @interface HJGuideSetViewController (){
+    UIToolbar *keyboardToolbar_;
 
 }
 @property (nonatomic, strong) NSString * firstResponderType;
@@ -76,13 +77,13 @@
     arrowImg_1.image = LOADIMAGE(@"xz_dueDate_selectArrow_img@2x", kImageTypePNG);
     [self.view addSubview:arrowImg_1];
     
-    UILabel * successTip_1 = [[UILabel alloc] initWithFrame:CGRectMake(220, 85, 80, 30)];
+    UILabel * successTip_1 = [[UILabel alloc] initWithFrame:CGRectMake(210, 85, 90, 30)];
     successTip_1.tag = successTip_1_TAG;
     successTip_1.hidden = YES;
     successTip_1.backgroundColor = [UIColor clearColor];
     successTip_1.text = @"末次月经期";
     successTip_1.textAlignment = NSTextAlignmentRight;
-    successTip_1.font = LANTING_FONT(15.0);
+    successTip_1.font = [UIFont systemFontOfSize:16.5];//LANTING_FONT(15.0);
     successTip_1.textColor = [UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1];
     [self.view addSubview:successTip_1];
     
@@ -133,7 +134,6 @@
         
         
     }
-
     
     HJMCustomTextField * SelectPromptWords_1 = [[HJMCustomTextField alloc] initWithFrame:CGRectMake(20, 80, 270, 78/2)];
     SelectPromptWords_1.delegate = self;
@@ -141,7 +141,7 @@
     SelectPromptWords_1.backgroundColor = [UIColor clearColor];
     SelectPromptWords_1.text = @"末次月经期";
     SelectPromptWords_1.textColor = [UIColor blackColor];
-    SelectPromptWords_1.font = LANTING_FONT(20);
+    SelectPromptWords_1.font = [UIFont systemFontOfSize:16.5];//LANTING_FONT(20);
     SelectPromptWords_1.inputView = self.datePicker_1;
     SelectPromptWords_1.inputAccessoryView = self.keyboardToolbar;
     [[HJMCustomTextField appearance] setTintColor:[UIColor colorWithRed:0.98 green:0.58 blue:0.65 alpha:1]];
@@ -170,7 +170,7 @@
     successTip_2.backgroundColor = [UIColor clearColor];
     successTip_2.text = @"预产期";
     successTip_2.textAlignment = NSTextAlignmentRight;
-    successTip_2.font = LANTING_FONT(15.0);
+    successTip_2.font = [UIFont systemFontOfSize:16.5];//LANTING_FONT(15.0);
     successTip_2.textColor = [UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1];
     [self.view addSubview:successTip_2];
     
@@ -180,7 +180,7 @@
     SelectPromptWords_2.backgroundColor = [UIColor clearColor];
     SelectPromptWords_2.text = @"预产期";
     SelectPromptWords_2.textColor = [UIColor blackColor];
-    SelectPromptWords_2.font = LANTING_FONT(20);
+    SelectPromptWords_2.font = [UIFont systemFontOfSize:16.5];//LANTING_FONT(20);
     SelectPromptWords_2.inputView = self.datePicker_2;
     SelectPromptWords_2.inputAccessoryView = self.keyboardToolbar;
     [[HJMCustomTextField appearance] setTintColor:[UIColor colorWithRed:0.98 green:0.58 blue:0.65 alpha:1]];

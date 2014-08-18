@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJDueDateCalculatorViewController : HJBaseViewController
+@interface HJDueDateCalculatorViewController : HJBaseViewController<UITextFieldDelegate>
 
 @end

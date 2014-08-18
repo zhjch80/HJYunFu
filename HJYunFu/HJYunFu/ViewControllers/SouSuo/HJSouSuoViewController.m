@@ -63,10 +63,6 @@
                                                            [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
                                                            shadow, NSShadowAttributeName, LANTING_FONT(24.0)
                                                            , NSFontAttributeName, nil]];
-    
-    //自定义返回
-    //    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back_btn.png"]];
-    //    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back_btn.png"]];
 }
 
 - (void)addAction:(UIButton *)sender {

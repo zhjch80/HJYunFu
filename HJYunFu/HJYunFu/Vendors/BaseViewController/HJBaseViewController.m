@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [UIColor clearColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"xz_top_img@2x"] forBarMetrics:UIBarMetricsDefault];

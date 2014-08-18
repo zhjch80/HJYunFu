@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJGuideSetViewController : UIViewController<UITextFieldDelegate> {
-    UIToolbar *keyboardToolbar_;
-
-}
+@interface HJGuideSetViewController : UIViewController<UITextFieldDelegate>
 
 @end

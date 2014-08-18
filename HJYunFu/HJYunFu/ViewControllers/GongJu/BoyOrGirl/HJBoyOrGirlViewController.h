@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJBoyOrGirlViewController : UIViewController
+@interface HJBoyOrGirlViewController : HJBaseViewController
 
 @end

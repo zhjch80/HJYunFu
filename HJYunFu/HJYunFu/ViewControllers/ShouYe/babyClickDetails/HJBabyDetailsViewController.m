@@ -1,18 +1,18 @@
 //
-//  HJSeedlingInoculationPlanViewController.m
+//  HJBabyDetailsViewController.m
 //  HJYunFu
 //
-//  Created by 华晋传媒 on 14-8-6.
+//  Created by 华晋传媒 on 14-8-13.
 //  Copyright (c) 2014年 HuaJinMedia. All rights reserved.
 //
 
-#import "HJSeedlingInoculationPlanViewController.h"
+#import "HJBabyDetailsViewController.h"
 
-@interface HJSeedlingInoculationPlanViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
+@interface HJBabyDetailsViewController ()<UINavigationBarDelegate,UIGestureRecognizerDelegate>
 
 @end
 
-@implementation HJSeedlingInoculationPlanViewController
+@implementation HJBabyDetailsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,7 +46,6 @@
             self.navigationController.interactivePopGestureRecognizer.delegate = self;
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kHideTabbar object:nil];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -61,9 +60,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [self loadNavBarWithTitle:@"育苗接种计划"];
+    [self loadNavBarWithTitle:@"baby"];
     
 }
+
+#pragma mark - 导航 NavBar
 
 - (void)loadNavBarWithTitle:(NSString *)title {
     self.navigationItem.title = title;
@@ -82,6 +83,7 @@
 
 - (void)backUpClick {
     [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAppearTabbar object:nil];
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,6 +10,9 @@
 #import "SYTableViewHead.h"
 #import "SYTableViewFoot.h"
 #import "HJPeriodSwitchDueDate.h"
+#import "HJShouYeCell.h"                                //cell 相关头文件
+#import "HJBabyDetailsViewController.h"                 //宝宝发育详情
+#import "HJUserFeedbackViewController.h"                //用户反馈
 
 @interface HJShouYeViewController ()<UITableViewDataSource,UITableViewDelegate,BtnsClickEventDelegate>
 
@@ -26,6 +29,11 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAppearTabbar object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,6 +41,8 @@
 
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
     
+    [self loadNavBarWithTitle:@"健康孕期"];
+
     CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
     NSString * str_1 = [AESCrypt decrypt:[storage objectForKey:MOCIYUEJINGQI_KEY] password:PASSWORD];
     NSString * str_2 = [AESCrypt decrypt:[storage objectForKey:YUCHANQI_KEY] password:PASSWORD];
@@ -45,22 +55,24 @@
     
     NSLog(@"距生产日:%@",[HJPeriodSwitchDueDate howManyDaysInTotalFromLastMenstrualPeriod:[[[HJPeriodSwitchDueDate gestationalAgeFromLastMenstrualPeriod:@"2014-01-10"] objectForKey:@"totalDays"] integerValue]]);
 
-    [self loadNavBarWithTitle:@"健康孕期"];
 
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight) style:UITableViewStylePlain];
+    tableView.bounces = NO;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
 
+    SYTableViewHead * SYHeadView = [[SYTableViewHead alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, (409 - 50 + 94)/2)];
+    tableView.tableHeaderView = SYHeadView;
+    
     SYTableViewFoot * SYFootView = [[SYTableViewFoot alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, 197/2)];
     SYFootView.delegate = self;
     tableView.tableFooterView = SYFootView;
-    
-    SYTableViewHead * SYHeadView = [[SYTableViewHead alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, 503/2)];
-    tableView.tableHeaderView = SYHeadView;
-    
+
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [SYHeadView addGestureRecognizer:recognizer];
     
     /*
      
@@ -75,6 +87,19 @@
     */
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)recognizer {
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+    HJBabyDetailsViewController *HJBabyDetailsCtl = [[HJBabyDetailsViewController alloc] init];
+    [self.navigationController pushViewController:HJBabyDetailsCtl animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kHideTabbar object:nil];
+    //开启iOS7的滑动返回效果
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+
 #pragma mark - BtnsClickEventDelegate
 - (void)btnsClickEvent:(NSInteger)value {
     switch (value) {
@@ -87,7 +112,9 @@
             break;
         }
         case 103:{
-            NSLog(@"反馈");
+            HJUserFeedbackViewController *HJUserFeedbackCtl = [[HJUserFeedbackViewController alloc] init];
+            [self.navigationController pushViewController:HJUserFeedbackCtl animated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kHideTabbar object:nil];
             break;
         }
             
@@ -100,6 +127,10 @@
 
 - (void)loadNavBarWithTitle:(NSString *)title {
     self.navigationItem.title = title;
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"xz_top_img"] forBarMetrics:UIBarMetricsDefault];
+
+    
     NSShadow *shadow = [[NSShadow alloc] init];
     shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
     shadow.shadowOffset = CGSizeMake(0, 0.0);
@@ -112,23 +143,96 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    if (indexPath.row == 0){
+        NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
+        HJMotherChangeCell * cell = (HJMotherChangeCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell){
+            cell = [[HJMotherChangeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        
+        return cell;
+    }else if (indexPath.row == 1){
+        NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
+        HJReadEveryDayCell * cell = (HJReadEveryDayCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell){
+            cell = [[HJReadEveryDayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        
+        return cell;
+    }else if (indexPath.row == 2){
+        NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
+        HJNutritionCell * cell = (HJNutritionCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell){
+            cell = [[HJNutritionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        
+        return cell;
+    }else if (indexPath.row == 3){
+        NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
+        HJMoreCell * cell = (HJMoreCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell){
+            cell = [[HJMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        return cell;
+    }else if (indexPath.row == 4){
+        NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
+        HJForbiddenToEatCell * cell = (HJForbiddenToEatCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell){
+            cell = [[HJForbiddenToEatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        return cell;
+    }else if (indexPath.row == 5){
+        NSString * cellIdentifier = [NSString stringWithFormat:@"sycell%d",indexPath.row];
+        HJMoreCell * cell = (HJMoreCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell){
+            cell = [[HJMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        return cell;
     }
-    cell.textLabel.text = @"cell";
-    return  cell;
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    if (indexPath.row == 2){
+        return 140;
+    }else if (indexPath.row == 3){
+        return 40;
+    }else if (indexPath.row == 4){
+        return 140;
+    }else if (indexPath.row == 5) {
+        return 40;
+    }else {
+        return 105;
+    }
 }
 
 #pragma mark -

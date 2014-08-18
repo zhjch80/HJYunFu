@@ -1,18 +1,18 @@
 //
-//  HJSeedlingInoculationPlanViewController.m
+//  HJUserFeedbackViewController.m
 //  HJYunFu
 //
-//  Created by 华晋传媒 on 14-8-6.
+//  Created by 华晋传媒 on 14-8-13.
 //  Copyright (c) 2014年 HuaJinMedia. All rights reserved.
 //
 
-#import "HJSeedlingInoculationPlanViewController.h"
+#import "HJUserFeedbackViewController.h"
 
-@interface HJSeedlingInoculationPlanViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
+@interface HJUserFeedbackViewController ()
 
 @end
 
-@implementation HJSeedlingInoculationPlanViewController
+@implementation HJUserFeedbackViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,15 +23,9 @@
     return self;
 }
 
-- (void)viewWillDisappear: (BOOL)animated {
-    [super viewWillDisappear: animated];
-    if (![[self.navigationController viewControllers] containsObject: self]) {
-        // the view has been removed from the navigation stack, back is probably the cause
-        // this will be slow with a large stack however.
-        NSLog(@"back!!!");
-    }
-    
-    //代理置空，否则会闪退
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //开启ios右滑返回
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
@@ -39,31 +33,18 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //开启iOS7的滑动返回效果
-    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        //只有在二级页面生效
-        if ([self.navigationController.viewControllers count] == 2) {
-            self.navigationController.interactivePopGestureRecognizer.delegate = self;
-        }
-    }
     [[NSNotificationCenter defaultCenter] postNotificationName:kHideTabbar object:nil];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    //开启滑动手势
-    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        navigationController.interactivePopGestureRecognizer.enabled = YES;
-    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    [self loadNavBarWithTitle:@"育苗接种计划"];
     
+    [self loadNavBarWithTitle:@"用户反馈"];
 }
+
+#pragma mark - 导航 NavBar
 
 - (void)loadNavBarWithTitle:(NSString *)title {
     self.navigationItem.title = title;
@@ -82,6 +63,7 @@
 
 - (void)backUpClick {
     [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAppearTabbar object:nil];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,7 +8,7 @@
 
 #import "HJPregnancyCheckViewController.h"
 
-@interface HJPregnancyCheckViewController ()
+@interface HJPregnancyCheckViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
 
 @end
 
@@ -23,9 +23,15 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //开启ios右滑返回
+- (void)viewWillDisappear: (BOOL)animated {
+    [super viewWillDisappear: animated];
+    if (![[self.navigationController viewControllers] containsObject: self]) {
+        // the view has been removed from the navigation stack, back is probably the cause
+        // this will be slow with a large stack however.
+        NSLog(@"back!!!");
+    }
+    
+    //代理置空，否则会闪退
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     }
@@ -33,14 +39,28 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    //开启iOS7的滑动返回效果
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        //只有在二级页面生效
+        if ([self.navigationController.viewControllers count] == 2) {
+            self.navigationController.interactivePopGestureRecognizer.delegate = self;
+        }
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:kHideTabbar object:nil];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    //开启滑动手势
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     [self loadNavBarWithTitle:@"孕期检查"];
     
 }
