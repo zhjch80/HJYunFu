@@ -53,7 +53,7 @@
     
     _cellTipArr = [[NSMutableArray alloc] initWithObjects:@"输入末次月经期便可计算出预产期", @"快来测测您的宝宝是男孩还是女孩", @"来测量一下宝宝的身高吧", @"看看宝宝会是什么血型", @"宝宝育苗接种很重要    快来设定计划吧", @"为您提供孕期检查详细安排表", @"在妻子怀孕期间准爸爸们需要注意的要点", nil];
     
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight - 49) style:UITableViewStylePlain];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     tableView.delegate = self;
@@ -93,14 +93,16 @@
 #pragma mark - 导航 NavBar
 
 - (void)loadNavBarWithTitle:(NSString *)title {
-    self.navigationItem.title = title;
-    NSShadow *shadow = [[NSShadow alloc] init];
-    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-    shadow.shadowOffset = CGSizeMake(0, 0.0);
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
-                                                           shadow, NSShadowAttributeName, LANTING_FONT(24.0)
-                                                           , NSFontAttributeName, nil]];
+//    self.navigationItem.title = title;
+    [self setTitle:title];
+
+//    NSShadow *shadow = [[NSShadow alloc] init];
+//    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+//    shadow.shadowOffset = CGSizeMake(0, 0.0);
+//    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+//                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+//                                                           shadow, NSShadowAttributeName, LANTING_FONT(24.0)
+//                                                           , NSFontAttributeName, nil]];
 }
 
 #pragma mark - UITableViewDelegate

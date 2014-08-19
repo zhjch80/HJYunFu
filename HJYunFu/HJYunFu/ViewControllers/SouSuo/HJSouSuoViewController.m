@@ -55,14 +55,16 @@
 #pragma mark - 导航 NavBar
 
 - (void)loadNavBarWithTitle:(NSString *)title {
-    self.navigationItem.title = title;
-    NSShadow *shadow = [[NSShadow alloc] init];
-    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-    shadow.shadowOffset = CGSizeMake(0, 0.0);
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
-                                                           shadow, NSShadowAttributeName, LANTING_FONT(24.0)
-                                                           , NSFontAttributeName, nil]];
+//    self.navigationItem.title = title;
+    [self setTitle:title];
+
+//    NSShadow *shadow = [[NSShadow alloc] init];
+//    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+//    shadow.shadowOffset = CGSizeMake(0, 0.0);
+//    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+//                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+//                                                           shadow, NSShadowAttributeName, LANTING_FONT(24.0)
+//                                                           , NSFontAttributeName, nil]];
 }
 
 - (void)addAction:(UIButton *)sender {
@@ -75,12 +77,15 @@
      By default, AFJSONRequestOperation accepts only "text/json", "application/json" or "text/javascript" content-types from server, but you are getting "text/html".
      */
     
+    NSString * str = @"http://115.29.102.31:8011/Istaff.do?m=Login?username=18701107843&password=202cb962ac59075b964b07152d234b70";
+    
+    //http://app.food.ttys5.com/api/food/suijitui
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject: @"text/html"];
-    [manager POST:@"http://app.food.ttys5.com/api/food/suijitui" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:str parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"responseObject:%@",responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error:%@",error);

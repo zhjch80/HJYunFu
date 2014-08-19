@@ -7,6 +7,8 @@
 //
 
 #import "HJBoyOrGirlViewController.h"
+#import "HJAgeChoiceView.h"
+#import "HJMonthChoiceView.h"
 
 @interface HJBoyOrGirlViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
 
@@ -60,7 +62,7 @@
  button tag 101
  img_N   201 202
  img_Y   301 302
- 
+ 选择 年龄 tag 401 402
  */
 - (void)viewDidLoad
 {
@@ -68,11 +70,12 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAgeChoiceModelView) name:@"removeAgeChoiceModelView" object:nil];
     
     [self loadNavBarWithTitle:@"生男生女预测"];
     
     UIScrollView * scr = [[UIScrollView alloc] init];
-    scr.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleHeight + 5);
+    scr.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight + 49);
     scr.contentSize = CGSizeMake([UtilityFunc shareInstance].globleWidth, 535);
     scr.pagingEnabled = NO;
     [self.view addSubview:scr];
@@ -107,6 +110,15 @@
         img_Y.tag = 301 + i;
         img_Y.image = LOADIMAGE(@"gl_select_Y_bg_img", kImageTypePNG);
         [scr addSubview:img_Y];
+    }
+    
+    for (int i=0; i<2; i++) {
+        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(260, 16+i*44, 40, 45);
+        btn.backgroundColor = [UIColor clearColor];
+        btn.tag = 401+i;
+        [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [scr addSubview:btn];
     }
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -149,10 +161,57 @@
     
 }
 
+#pragma mark - 移除选择年龄 View Method
+
+- (void)removeAgeChoiceModelView {
+    NSLog(@" will removeAgeChoiceModelView");
+    for (id view in [[UIApplication sharedApplication].keyWindow subviews]) {
+        if ([view isKindOfClass:[HJAgeChoiceView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    
+    for (id view in [[UIApplication sharedApplication].keyWindow subviews]) {
+        if ([view isKindOfClass:[HJMonthChoiceView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
 #pragma mark - buttonClick Method
 
 - (void)buttonClick:(UIButton *)sender {
-    
+    switch (sender.tag) {
+        case 101:{
+            NSLog(@"101");
+            break;
+        }
+        case 401:{
+            NSLog(@"401");
+       
+            HJAgeChoiceView * ageChoiceView = [[HJAgeChoiceView alloc] init];
+            ageChoiceView.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight);
+            ageChoiceView.backgroundColor = [UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:0.9];
+            ageChoiceView.alpha = 0.8;
+            [[UIApplication sharedApplication].keyWindow addSubview:ageChoiceView];
+            
+            break;
+        }
+        case 402:{
+            NSLog(@"402");
+            
+            HJMonthChoiceView * monthChoice = [[HJMonthChoiceView alloc] init];
+            monthChoice.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight);
+            monthChoice.backgroundColor = [UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:0.9];
+            monthChoice.alpha = 0.8;
+            [[UIApplication sharedApplication].keyWindow addSubview:monthChoice];
+
+            break;
+        }
+
+        default:
+            break;
+    }
 }
 
 #pragma mark - 导航栏

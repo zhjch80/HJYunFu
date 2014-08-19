@@ -8,6 +8,7 @@
 
 #import "HJDueDateCalculatorViewController.h"
 #import "HJMCustomTextField.h"
+#import "HJPeriodSwitchDueDate.h"
 
 @interface HJDueDateCalculatorViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>{
     UIToolbar *keyboardToolbar_;
@@ -196,6 +197,18 @@
 
 - (void)doneMethod:(id)sender {
     [(UITextField *)[self.view viewWithTag:201] resignFirstResponder];
+    NSDate * _date = self.datePicker_1.date;
+    NSString * dateStr = [[NSString stringWithFormat:@"%@",_date] substringToIndex:10];
+    
+    HJMCustomTextField * SelectPromptWords_1 = (HJMCustomTextField *)[self.view viewWithTag:201];
+    UILabel * SelectPromptWords_2 = (UILabel *)[self.view viewWithTag:202];
+    
+    SelectPromptWords_1.text = dateStr;
+    SelectPromptWords_2.text = [HJPeriodSwitchDueDate dueDateFromLastMenstrualPeriod:dateStr];
+    
+    ((UILabel *)[self.view viewWithTag:401]).hidden = NO;
+    ((UILabel *)[self.view viewWithTag:402]).hidden = NO;
+    ((UIImageView *)[self.view viewWithTag:101]).hidden = YES;
 }
 
 #pragma mark - 导航栏
@@ -211,7 +224,7 @@
                                                            , NSFontAttributeName, nil]];
     
     UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:LOADIMAGE(@"back", kImageTypePNG) style:UIBarButtonItemStylePlain target:self action:@selector(backUpClick) ];
-    leftBar.tintColor = [UIColor whiteColor];
+    leftBar.tintColor = [UIColor clearColor];
     self.navigationItem.leftBarButtonItem = leftBar;
     
 }
@@ -223,9 +236,11 @@
 #pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    textField.text = @"";
-    textField.placeholder = @"末次月经期";
-    ((UIImageView *)[self.view viewWithTag:101]).hidden = YES;
+    if ([textField.text isEqualToString:@"末次月经期"]) {
+        textField.text = @"";
+        textField.placeholder = @"末次月经期";
+        ((UIImageView *)[self.view viewWithTag:101]).hidden = YES;
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

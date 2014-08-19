@@ -72,7 +72,7 @@
     bgImg.userInteractionEnabled = YES;
     [self.view addSubview:bgImg];
  
-    NSArray * titleArr = [[NSArray alloc] initWithObjects:@"爸爸的血型:", @"妈妈的血型:", nil];
+    NSArray * titleArr = [[NSArray alloc] initWithObjects:@"爸爸的血型:", @"妈妈的血型:", @"宝宝的血型可能为:", @"宝宝的血型不可能为:", nil];
     for (int i=0; i<2; i++) {
         UILabel * title = [[UILabel alloc] init];
         title.frame = CGRectMake(23, 21 + i*44, 220, 30);
@@ -95,10 +95,16 @@
         resultsImg.image = LOADIMAGE(@"gj_babyyc_bg_img", kImageTypePNG);
         [self.view addSubview:resultsImg];
     }
-        
     
+    for (int i=0; i<2; i++) {
+        UILabel * title = [[UILabel alloc] init];
+        title.frame = CGRectMake(25, 176 + i*45, 200, 30);
+        title.backgroundColor = [UIColor clearColor];
+        title.text = [titleArr objectAtIndex:2+i];
+        [self.view addSubview:title];
+    }
     
-    UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(8, 215, [UtilityFunc shareInstance].globleWidth - 11, 320)];
+    UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(8, 165, [UtilityFunc shareInstance].globleWidth - 11, 320)];
     text.backgroundColor = [UIColor clearColor];
     text.font = [UIFont systemFontOfSize:15.0];
     text.numberOfLines = 0;
@@ -111,12 +117,9 @@
     NSDictionary *ats = @{
                           NSParagraphStyleAttributeName : paragraphStyle,
                           };
-    text.attributedText = [[NSAttributedString alloc] initWithString:@"人的身高与遗传有很大关系，根据爸爸妈妈的身高，可以一定程度上预测出宝宝未来所能达到的高度范围。但需要注意的是，遗传因素对宝宝身高的影响不是绝对的，在遗传学上身高的遗传度为0.72，意思是说子女的身高有72%受遗传影响，但最终身高还受到其他后天因素的影响。" attributes:ats];
+    text.attributedText = [[NSAttributedString alloc] initWithString:@"血型是以A、B、O、等三种遗传因子的组合而决定的，大多根据父母的血型即可判断出以后出生的小宝宝可能出现的血型。" attributes:ats];
     text.textColor = [UIColor colorWithRed:0.49 green:0.49 blue:0.49 alpha:1];
     [self.view addSubview:text];
-    
-    
-    
 }
 
 - (void)buttonClick:(UIButton *)sender {
