@@ -124,49 +124,15 @@
 #pragma mark - 导航 NavBar
 
 - (void)loadNavBarWithTitle:(NSString *)title {
-//    self.navigationItem.title = title;
-
-    
-    [self setTitle:title];
-
-//    UIImage * searchBackImage = [UIImage imageNamed:@"xz_top_img"];
-//    searchBackImage = [searchBackImage stretchableImageWithLeftCapWidth:1 topCapHeight:64];
-//    UIImageView * searchBackView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 64)];
-//    searchBackView.image = searchBackImage;
-//    self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
-//    [self.navigationController.navigationBar setBackgroundImage:searchBackView.image forBarMetrics:UIBarMetricsDefault];
-
-   
-    
-    
-    
-    
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"xz_top_img@2x"] forBarMetrics:UIBarMetricsDefault];
-    
-//    NSShadow *shadow = [[NSShadow alloc] init];
-//    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-//    shadow.shadowOffset = CGSizeMake(0, 0.0);
-//    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-//                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
-//                                                           shadow, NSShadowAttributeName, LANTING_FONT(24.0)
-//                                                           , NSFontAttributeName, nil]];
+    self.navigationItem.title = title;
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 0.0);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName, LANTING_FONT(24.0)
+                                                           , NSFontAttributeName, nil]];
 }
-
-//- (void)setTitle:(NSString *) title {
-//    [super setTitle:title];
-//    UILabel *titleView = (UILabel *)self.navigationItem.titleView;
-//    titleView.textAlignment = NSTextAlignmentCenter;
-//    if(!titleView){
-//        titleView = [[UILabel alloc] initWithFrame:CGRectZero];
-//        titleView.backgroundColor = [UIColor clearColor];
-//        titleView.font = LANTING_FONT(24.0);
-//        titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.2];
-//        titleView.textColor = [UIColor whiteColor];
-//        self.navigationItem.titleView = titleView;
-//    }
-//    titleView.text = title;
-//    [titleView sizeToFit];
-//}
 
 #pragma mark - UITableViewDelegate
 

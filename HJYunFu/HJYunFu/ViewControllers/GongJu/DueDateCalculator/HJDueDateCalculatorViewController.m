@@ -224,9 +224,8 @@
                                                            , NSFontAttributeName, nil]];
     
     UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:LOADIMAGE(@"back", kImageTypePNG) style:UIBarButtonItemStylePlain target:self action:@selector(backUpClick) ];
-    leftBar.tintColor = [UIColor clearColor];
+    leftBar.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = leftBar;
-    
 }
 
 - (void)backUpClick{

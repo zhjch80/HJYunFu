@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJGuideSetViewController : UIViewController<UITextFieldDelegate>
+@interface HJGuideSetViewController : HJBaseViewController<UITextFieldDelegate>
 
 @end

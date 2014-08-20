@@ -55,18 +55,7 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
     
-    UIImageView * topImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, 64)];
-    topImg.backgroundColor = [UIColor clearColor];
-    topImg.image = LOADIMAGE(@"xz_top_img@2x", kImageTypePNG);
-    [self.view addSubview:topImg];
-    
-    UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, [UtilityFunc shareInstance].globleWidth, 44)];
-    title.backgroundColor = [UIColor clearColor];
-    title.text = @"预产期设置";
-    title.textAlignment = NSTextAlignmentCenter;
-    title.textColor = [UIColor whiteColor];
-    title.font = LANTING_FONT(22);
-    [topImg addSubview:title];
+    [self loadNavBarWithTitle:@"预产期设置"];
     
     UIImageView * selectImg_1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 80, 593/2, 78/2)];
     selectImg_1.image = LOADIMAGE(@"xz_dueDate_select_img@2x", kImageTypePNG);
@@ -195,6 +184,20 @@
     [self.view addSubview:nextBtn];
     
 }
+
+#pragma mark - 导航 NavBar
+
+- (void)loadNavBarWithTitle:(NSString *)title {
+    self.navigationItem.title = title;
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 0.0);
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+                                                           shadow, NSShadowAttributeName, LANTING_FONT(24.0)
+                                                           , NSFontAttributeName, nil]];
+}
+
 
 - (void)buttonClick:(UIButton *)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SwitchoverRootViewControllerMethod" object:nil];

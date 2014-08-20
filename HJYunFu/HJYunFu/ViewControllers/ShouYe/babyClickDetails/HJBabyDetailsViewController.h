@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJBabyDetailsViewController : UIViewController
+@interface HJBabyDetailsViewController : HJBaseViewController
 
 @end

@@ -226,7 +226,8 @@
 
 - (void)initFitstViewControllers {
     HJGuideSetViewController * HJGuideSetCtl = [[HJGuideSetViewController alloc] init];
-    [self.window setRootViewController:HJGuideSetCtl];
+    UINavigationController * HJGuideSetNav = [[UINavigationController alloc] initWithRootViewController:HJGuideSetCtl];
+    [self.window setRootViewController:HJGuideSetNav];
 }
 
 #pragma mark - 初始化屏幕宽高

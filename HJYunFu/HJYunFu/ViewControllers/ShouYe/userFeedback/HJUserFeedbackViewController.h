@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJUserFeedbackViewController : UIViewController
+@interface HJUserFeedbackViewController : HJBaseViewController
 
 @end
