@@ -7,8 +7,9 @@
 //
 
 #import "HJMyCollectionViewController.h"
+#import "HJMyCollectionCell.h"
 
-@interface HJMyCollectionViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
+@interface HJMyCollectionViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -63,6 +64,42 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
 
     [self loadNavBarWithTitle:@"我的收藏"];
+    
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight + 49) style:UITableViewStylePlain];
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    
+    
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString * cellIdentifier = [NSString stringWithFormat:@"sccell%d",indexPath.row];
+    HJMyCollectionCell * cell = (HJMyCollectionCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[HJMyCollectionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0;
 }
 
 #pragma mark - 导航栏

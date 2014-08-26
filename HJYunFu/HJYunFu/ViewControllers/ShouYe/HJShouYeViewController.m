@@ -54,7 +54,7 @@
     NSLog(@"距生产日:%@",[HJPeriodSwitchDueDate howManyDaysInTotalFromLastMenstrualPeriod:[[[HJPeriodSwitchDueDate gestationalAgeFromLastMenstrualPeriod:@"2014-01-10"] objectForKey:@"totalDays"] integerValue]]);
 
 
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight - 49) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight) style:UITableViewStylePlain];
     tableView.bounces = NO;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
