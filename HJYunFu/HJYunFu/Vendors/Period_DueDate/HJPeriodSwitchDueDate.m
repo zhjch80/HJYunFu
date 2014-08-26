@@ -498,12 +498,15 @@
 + (NSMutableDictionary *)getBabyHeightWithFatherHeight:(NSString *)F_height WithMotherHeight:(NSString *)M_height WithGender:(NSString *)gender {
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"0.0", @"babyHeight_MAX", @"0.0", @"babyHeight_MIN", nil];
     
-    double babyHeight_MAX = 0.00;
-    double babyHeight_MIN = 0.00;
+    float babyHeight_MAX = 0.00;
+    float babyHeight_MIN = 0.00;
 
     float Fheight = 0.00;
     float Mheight = 0.00;
     
+    Fheight = F_height.floatValue;
+    Mheight = M_height.floatValue;
+        
     if ([gender isEqualToString:@"男"]){
         babyHeight_MAX = (56.699 + 0.419 * Fheight + 0.265 * Mheight) + 3;
         babyHeight_MIN = (56.699 + 0.419 * Fheight + 0.265 * Mheight) - 3;
@@ -553,7 +556,11 @@
     }else if ([F_Type isEqualToString:@"O"] && [M_Type isEqualToString:@"O"]){
         [dic setObject:@"O" forKey:@"maybe"];
         [dic setObject:@"A,B,AB" forKey:@"impossibility"];
+    }else{
+        [dic setObject:@"-1" forKey:@"maybe"];
+        [dic setObject:@"-1" forKey:@"impossibility"];
     }
+    
     return dic;
 }
 

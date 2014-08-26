@@ -32,7 +32,7 @@
         [self.contentView addSubview:_upline];
         
         _yellowRound = [[UIImageView alloc] initWithFrame:CGRectMake(53.8, 30, 8, 8)];
-        _yellowRound.image = LOADIMAGE(@"sy_ yellowRound_img@2x", kImageTypePNG);
+        _yellowRound.image = LOADIMAGE(@"sy_yellowRound_img@2x", kImageTypePNG);
         _yellowRound.userInteractionEnabled = YES;
         _yellowRound.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_yellowRound];

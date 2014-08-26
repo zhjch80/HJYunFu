@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJPregnancyCheckViewController : UIViewController
+@interface HJPregnancyCheckViewController : HJBaseViewController
 
 @end

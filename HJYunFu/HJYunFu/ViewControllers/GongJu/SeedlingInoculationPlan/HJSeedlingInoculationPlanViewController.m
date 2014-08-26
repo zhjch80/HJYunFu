@@ -8,7 +8,7 @@
 
 #import "HJSeedlingInoculationPlanViewController.h"
 
-@interface HJSeedlingInoculationPlanViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
+@interface HJSeedlingInoculationPlanViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate,UIWebViewDelegate>
 
 @end
 
@@ -61,7 +61,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
     [self loadNavBarWithTitle:@"育苗接种计划"];
+    
+    UIWebView * webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight + 49)];
+    webView.userInteractionEnabled = YES;
+    webView.scrollView.bounces = YES;
+    webView.delegate = self;
+    [webView setBackgroundColor:[UIColor clearColor]];
+    [webView setOpaque:NO];            //使网页透明
+    [self.view addSubview:webView];
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"yumiaojiezhong" ofType:@"html"];
+    NSURL* url = [NSURL fileURLWithPath:path];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
+    [webView loadRequest:request];
     
 }
 

@@ -9,12 +9,15 @@
 #import "HJBoyOrGirlViewController.h"
 #import "HJAgeChoiceView.h"
 #import "HJMonthChoiceView.h"
+#import "HJPeriodSwitchDueDate.h"
 
 @interface HJBoyOrGirlViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
-
+@property (nonatomic, copy) NSString * xusui;
+@property (nonatomic, copy) NSString * yuefen;
 @end
 
 @implementation HJBoyOrGirlViewController
+@synthesize xusui = _xusui,yuefen = _yuefen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,8 +64,10 @@
 /**
  button tag 101
  img_N   201 202
- img_Y   301 302
  选择 年龄 tag 401 402
+ scr tag 501
+ show tag 601 602
+ predictResults tag 701
  */
 - (void)viewDidLoad
 {
@@ -72,10 +77,15 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAgeChoiceModelView) name:@"removeAgeChoiceModelView" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addXuSuiMethod) name:@"addXuSuiMethod" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addYueFenMethod) name:@"addYueFenMethod" object:nil];
+    
     [self loadNavBarWithTitle:@"生男生女预测"];
     
     UIScrollView * scr = [[UIScrollView alloc] init];
     scr.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight + 49);
+    scr.tag = 501;
     scr.contentSize = CGSizeMake([UtilityFunc shareInstance].globleWidth, 535);
     scr.pagingEnabled = NO;
     [self.view addSubview:scr];
@@ -104,12 +114,11 @@
         img_N.image = LOADIMAGE(@"gl_select_N_bg_img", kImageTypePNG);
         [scr addSubview:img_N];
         
-        UIImageView * img_Y = [[UIImageView alloc] init];
-        img_Y.hidden = YES;
-        img_Y.frame = CGRectMake(278, 26 + i*44, 14, 20);
-        img_Y.tag = 301 + i;
-        img_Y.image = LOADIMAGE(@"gl_select_Y_bg_img", kImageTypePNG);
-        [scr addSubview:img_Y];
+        UILabel * show = [[UILabel alloc] init];
+        show.tag = 601 +i;
+        show.frame = CGRectMake(230 + i*8, 21 + i*44, 50, 30);
+        show.backgroundColor = [UIColor clearColor];
+        [scr addSubview:show];
     }
     
     for (int i=0; i<2; i++) {
@@ -141,6 +150,12 @@
     results.font = [UIFont systemFontOfSize:16.0];
     [scr addSubview:results];
     
+    UILabel * predictResults = [[UILabel alloc] init];
+    predictResults.frame = CGRectMake(140, 190, 100, 30);
+    predictResults.tag = 701;
+    predictResults.backgroundColor = [UIColor clearColor];
+    [scr addSubview:predictResults];
+    
     UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(8, 225, [UtilityFunc shareInstance].globleWidth - 11, 320)];
     text.backgroundColor = [UIColor clearColor];
     text.font = [UIFont systemFontOfSize:15.0];
@@ -157,14 +172,37 @@
     text.attributedText = [[NSAttributedString alloc] initWithString:@"本测试基于清宫珍藏得生男生女预测表，即《清宫表》。\n《清宫表》是民间最广为流传得一种生男生女测算法，不仅用于胎宝宝性别得猜测，也有未准妈妈根据《清宫表》来决定受孕时间。\n《清宫表》是通过“受孕的农历月份”和“孕妈妈受孕时的虚岁年龄”两个数据来判断。民间传说并无科学依据，只为准爸妈们孕愈期间休闲娱乐，不能够完全相信哦。" attributes:ats];
     text.textColor = [UIColor colorWithRed:0.49 green:0.49 blue:0.49 alpha:1];
     [scr addSubview:text];
+}
 
+#pragma mark - Method
+
+- (void)addXuSuiMethod {
+    UILabel * label = (UILabel *)[self.view viewWithTag:601];
+    CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+    NSString * str = [AESCrypt decrypt:[storage objectForKey:XUSUI_KEY] password:PASSWORD];
+    label.text = str;
     
+    NSRange range = [str rangeOfString:@"岁"];
+    if (range.location != NSNotFound){
+        _xusui = [str substringToIndex:range.location];
+    }
+}
+
+- (void)addYueFenMethod {
+    UILabel * label = (UILabel *)[self.view viewWithTag:602];
+    CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+    NSString * str = [AESCrypt decrypt:[storage objectForKey:PAILUANYUEFEN_KEY] password:PASSWORD];
+    label.text = str;
+
+    NSRange range = [str rangeOfString:@"月"];
+    if (range.location != NSNotFound){
+        _yuefen = [str substringToIndex:range.location];
+    }
 }
 
 #pragma mark - 移除选择年龄 View Method
 
 - (void)removeAgeChoiceModelView {
-    NSLog(@" will removeAgeChoiceModelView");
     for (id view in [[UIApplication sharedApplication].keyWindow subviews]) {
         if ([view isKindOfClass:[HJAgeChoiceView class]]) {
             [view removeFromSuperview];
@@ -181,31 +219,29 @@
 #pragma mark - buttonClick Method
 
 - (void)buttonClick:(UIButton *)sender {
+    UIScrollView * scr = (UIScrollView *)[self.view viewWithTag:501];
     switch (sender.tag) {
         case 101:{
-            NSLog(@"101");
+            UILabel * predictResults = (UILabel *)[self.view viewWithTag:701];
+            predictResults.text = [HJPeriodSwitchDueDate getBoyOrGirlWithAge:_xusui WithMonth:_yuefen];
             break;
         }
         case 401:{
-            NSLog(@"401");
-       
+            if ((64 + scr.contentOffset.y) > 26.0) {
+                return ;
+            }
             HJAgeChoiceView * ageChoiceView = [[HJAgeChoiceView alloc] init];
-            ageChoiceView.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight);
-            ageChoiceView.backgroundColor = [UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:0.9];
-            ageChoiceView.alpha = 0.8;
+            ageChoiceView.frame = CGRectMake(0, -(64 + scr.contentOffset.y), [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight);
             [[UIApplication sharedApplication].keyWindow addSubview:ageChoiceView];
-            
             break;
         }
         case 402:{
-            NSLog(@"402");
-            
+            if ((64 + scr.contentOffset.y) >= 70.0){
+                return ;
+            }
             HJMonthChoiceView * monthChoice = [[HJMonthChoiceView alloc] init];
-            monthChoice.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight);
-            monthChoice.backgroundColor = [UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:0.9];
-            monthChoice.alpha = 0.8;
+            monthChoice.frame = CGRectMake(0, -(64 + scr.contentOffset.y), [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight);
             [[UIApplication sharedApplication].keyWindow addSubview:monthChoice];
-
             break;
         }
 

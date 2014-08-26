@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJBabysBloodTypePredictionViewController : UIViewController
+@interface HJBabysBloodTypePredictionViewController : HJBaseViewController
 
 @end

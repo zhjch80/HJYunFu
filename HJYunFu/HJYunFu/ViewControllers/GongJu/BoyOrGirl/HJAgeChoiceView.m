@@ -22,6 +22,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+        UIImageView * bgImg = [[UIImageView alloc] init];
+        bgImg.frame = CGRectMake(0, -500, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight + 1000);
+        bgImg.image = LOADIMAGE(@"gj_transparent_bg_img@2x", kImageTypePNG);
+        bgImg.userInteractionEnabled = YES;
+        bgImg.backgroundColor = [UIColor clearColor];
+        [self addSubview:bgImg];
+        
         if (!_ageArr) {
             _ageArr = [[NSMutableArray alloc] initWithObjects:@"18岁", @"19岁", @"20岁", @"21岁", @"22岁", @"23岁", @"24岁", @"25岁", @"26岁", @"27岁", @"28岁", @"29岁", @"30岁", @"31岁", @"32岁", @"33岁", @"34岁", @"35岁", @"36岁", @"37岁", @"38岁", @"39岁", @"40岁", @"41岁", @"42岁", @"43岁", @"44岁", @"45岁", nil];
         }
@@ -58,7 +66,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    tableView.backgroundColor = [UIColor whiteColor];
+    tableView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
     tableView.alpha = 0.9;
     [bgView addSubview:tableView];
 }
@@ -67,7 +75,6 @@
 
 - (void)buttonClick:(UIButton *)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"removeAgeChoiceModelView" object:nil];
-    
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -88,6 +95,20 @@
     cell.mtitle.text = [_ageArr objectAtIndex:indexPath.row];
     cell.leftImg.image = LOADIMAGE(@"gj_anniu_white_img", kImageTypePNG);
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+    [storage beginUpdates];
+    NSString * str = [AESCrypt encrypt:[_ageArr objectAtIndex:indexPath.row] password:PASSWORD];
+    [storage setObject:str forKey:XUSUI_KEY];
+    [storage endUpdates];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addXuSuiMethod" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removeAgeChoiceModelView" object:nil];
+    });
 }
 
 /*

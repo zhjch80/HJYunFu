@@ -39,6 +39,9 @@
 #define MOCIYUEJINGQI_KEY                           @"mociyuejingqi"
 #define YUCHANQI_KEY                                @"yuchanqi"
 
+#define XUSUI_KEY                                   @"xusui"
+#define PAILUANYUEFEN_KEY                           @"pailuanyuefen"
+
 #define PASSWORD                                    @"password"
 
 

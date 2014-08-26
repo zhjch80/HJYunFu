@@ -8,7 +8,7 @@
 
 #import "HJModifyTheDueDateViewController.h"
 
-@interface HJModifyTheDueDateViewController ()
+@interface HJModifyTheDueDateViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
 
 @end
 
@@ -23,10 +23,45 @@
     return self;
 }
 
+- (void)viewWillDisappear: (BOOL)animated {
+    [super viewWillDisappear: animated];
+    if (![[self.navigationController viewControllers] containsObject: self]) {
+        // the view has been removed from the navigation stack, back is probably the cause
+        // this will be slow with a large stack however.
+        NSLog(@"back!!!");
+    }
+    
+    //代理置空，否则会闪退
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //开启iOS7的滑动返回效果
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        //只有在二级页面生效
+        if ([self.navigationController.viewControllers count] == 2) {
+            self.navigationController.interactivePopGestureRecognizer.delegate = self;
+        }
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kHideTabbar object:nil];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    //开启滑动手势
+    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
+
     [self loadNavBarWithTitle:@"修改预产期"];
     
 }
@@ -43,7 +78,7 @@
                                                            shadow, NSShadowAttributeName, LANTING_FONT(24.0)
                                                            , NSFontAttributeName, nil]];
     
-    UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:LOADIMAGE(@"back", kImageTypePNG) style:UIBarButtonItemStylePlain target:self action:@selector(backUpClick) ];
+    UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backUpClick)];
     leftBar.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = leftBar;
 }

@@ -7,8 +7,11 @@
 //
 
 #import "HJBabysBloodTypePredictionViewController.h"
+#import "HJMCustomTextField.h"
+#import "HJPeriodSwitchDueDate.h"
 
-@interface HJBabysBloodTypePredictionViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
+@interface HJBabysBloodTypePredictionViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate,UITextFieldDelegate>
+@property (nonatomic, strong) UIToolbar *keyboardToolbar;
 
 @end
 
@@ -56,6 +59,11 @@
     }
 }
 
+/**
+ button.tag 101
+ HJMCustomTextField 201 202
+ displayResults 301 302
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -66,7 +74,7 @@
     [self loadNavBarWithTitle:@"宝宝血型查询"];
     
     UIImageView * bgImg = [[UIImageView alloc] init];
-    bgImg.frame = CGRectMake(14, 15, 292, 85);
+    bgImg.frame = CGRectMake(14, 75, 292, 85);
     bgImg.image = LOADIMAGE(@"gj_boyorgirl_bg_img", kImageTypePNG);
     bgImg.backgroundColor = [UIColor clearColor];
     bgImg.userInteractionEnabled = YES;
@@ -75,14 +83,55 @@
     NSArray * titleArr = [[NSArray alloc] initWithObjects:@"爸爸的血型:", @"妈妈的血型:", @"宝宝的血型可能为:", @"宝宝的血型不可能为:", nil];
     for (int i=0; i<2; i++) {
         UILabel * title = [[UILabel alloc] init];
-        title.frame = CGRectMake(23, 21 + i*44, 220, 30);
+        title.frame = CGRectMake(23, 80 + i*44, 220, 30);
         title.text = [titleArr objectAtIndex:i];
         title.backgroundColor = [UIColor clearColor];
         [self.view addSubview:title];
     }
     
+    // Keyboard toolbar
+    if (self.keyboardToolbar == nil) {
+        self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 38.0f)];
+        self.keyboardToolbar.backgroundColor = [UIColor whiteColor];
+        self.keyboardToolbar.barTintColor = [UIColor whiteColor];
+        
+        UIBarButtonItem *cancelBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"取消", @"")
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:self
+                                                                         action:@selector(cancelMethod:)];
+        [cancelBarItem setTintColor:[UIColor colorWithRed:0.99 green:0.24 blue:0.38 alpha:1]];
+        
+        UIBarButtonItem *spaceBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                      target:nil
+                                                                                      action:nil];
+        
+        UIBarButtonItem *doneBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"完成", @"")
+                                                                        style:UIBarButtonItemStyleDone
+                                                                       target:self
+                                                                       action:@selector(doneMethod:)];
+        [doneBarItem setTintColor:[UIColor colorWithRed:0.99 green:0.24 blue:0.38 alpha:1]];
+        
+        [self.keyboardToolbar setItems:[NSArray arrayWithObjects:cancelBarItem, spaceBarItem, doneBarItem, nil]];
+    }
+
+    for (int i=0; i<2; i++) {
+        HJMCustomTextField * textField = [[HJMCustomTextField alloc] init];
+        textField.frame = CGRectMake(120, 82 + i*41, 160, 30);
+        textField.delegate = self;
+        textField.tag = 201 + i;
+        textField.backgroundColor = [UIColor clearColor];
+        textField.placeholder = @"请输入血型";
+        textField.text = @"";
+        textField.textColor = [UIColor blackColor];
+        textField.font = [UIFont systemFontOfSize:16.5];
+        textField.inputAccessoryView = self.keyboardToolbar;
+        textField.keyboardType =  UIKeyboardTypeDefault;
+        [[HJMCustomTextField appearance] setTintColor:[UIColor colorWithRed:0.98 green:0.58 blue:0.65 alpha:1]];
+        [self.view addSubview:textField];
+    }
+    
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(54, 125, 207, 34);
+    button.frame = CGRectMake(54, 175, 207, 34);
     [button setBackgroundImage:LOADIMAGE(@"gj_kscs_btn_img", kImageTypePNG) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = 101;
@@ -90,7 +139,7 @@
     
     for (int i=0; i<2; i++) {
         UIImageView * resultsImg = [[UIImageView alloc] init];
-        resultsImg.frame = CGRectMake(14, 170 + i*45, 292, 40);
+        resultsImg.frame = CGRectMake(14, 220 + i*45, 292, 40);
         resultsImg.backgroundColor = [UIColor clearColor];
         resultsImg.image = LOADIMAGE(@"gj_babyyc_bg_img", kImageTypePNG);
         [self.view addSubview:resultsImg];
@@ -98,13 +147,21 @@
     
     for (int i=0; i<2; i++) {
         UILabel * title = [[UILabel alloc] init];
-        title.frame = CGRectMake(25, 176 + i*45, 200, 30);
+        title.frame = CGRectMake(25, 226 + i*45, 200, 30);
         title.backgroundColor = [UIColor clearColor];
         title.text = [titleArr objectAtIndex:2+i];
         [self.view addSubview:title];
     }
     
-    UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(8, 165, [UtilityFunc shareInstance].globleWidth - 11, 320)];
+    for (int i=0; i<2; i++) {
+        UILabel * displayResults = [[UILabel alloc] init];
+        displayResults.tag = 301 + i;
+        displayResults.frame = CGRectMake(170 + i*16, 226 + i*45, 140 - i*16, 30);
+        displayResults.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:displayResults];
+    }
+    
+    UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(8, 205, [UtilityFunc shareInstance].globleWidth - 11, 320)];
     text.backgroundColor = [UIColor clearColor];
     text.font = [UIFont systemFontOfSize:15.0];
     text.numberOfLines = 0;
@@ -122,8 +179,36 @@
     [self.view addSubview:text];
 }
 
+- (void)cancelMethod:(id)sender {
+    for (int i=0; i<2; i++) {
+        [((HJMCustomTextField *)[self.view viewWithTag:201 +i]) resignFirstResponder];
+    }
+}
+
+- (void)doneMethod:(id)sender {
+    for (int i=0; i<2; i++) {
+        [((HJMCustomTextField *)[self.view viewWithTag:201 +i]) resignFirstResponder];
+    }
+}
+
 - (void)buttonClick:(UIButton *)sender {
-    
+    switch (sender.tag) {
+        case 101:{
+            if ([[[HJPeriodSwitchDueDate getBabyBloodTypeWithFatherType:((HJMCustomTextField *)[self.view viewWithTag:201]).text WithMotherType:((HJMCustomTextField *)[self.view viewWithTag:202]).text] objectForKey:@"impossibility"] isEqualToString:@"-1"] || [[[HJPeriodSwitchDueDate getBabyBloodTypeWithFatherType:((HJMCustomTextField *)[self.view viewWithTag:201]).text WithMotherType:((HJMCustomTextField *)[self.view viewWithTag:202]).text] objectForKey:@"maybe"] isEqualToString:@"-1"]) {
+                
+                NSLog(@"用户输入的血型有误");
+                return ;
+            }
+            
+            ((UILabel *)[self.view viewWithTag:301]).text = [[HJPeriodSwitchDueDate getBabyBloodTypeWithFatherType:((HJMCustomTextField *)[self.view viewWithTag:201]).text WithMotherType:((HJMCustomTextField *)[self.view viewWithTag:202]).text] objectForKey:@"maybe"];
+            
+            ((UILabel *)[self.view viewWithTag:302]).text = [[HJPeriodSwitchDueDate getBabyBloodTypeWithFatherType:((HJMCustomTextField *)[self.view viewWithTag:201]).text WithMotherType:((HJMCustomTextField *)[self.view viewWithTag:202]).text] objectForKey:@"impossibility"];
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
 - (void)loadNavBarWithTitle:(NSString *)title {

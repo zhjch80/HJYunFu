@@ -23,8 +23,15 @@
     if (self) {
         // Initialization code
         
+        UIImageView * bgImg = [[UIImageView alloc] init];
+        bgImg.frame = CGRectMake(0, -500, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight + 1500);
+        bgImg.image = LOADIMAGE(@"gj_transparent_bg_img@2x", kImageTypePNG);
+        bgImg.userInteractionEnabled = YES;
+        bgImg.backgroundColor = [UIColor clearColor];
+        [self addSubview:bgImg];
+        
         if (!_monthArr) {
-            _monthArr = [[NSMutableArray alloc] initWithObjects:@"一月", @"二月", @"三月", @"四月", @"五月", @"六月", @"七月", @"八月", @"九月", @"十月", @"十一月", @"十二月", nil];
+            _monthArr = [[NSMutableArray alloc] initWithObjects:@"1月", @"2月", @"3月", @"4月", @"5月", @"6月", @"7月", @"8月", @"9月", @"10月", @"11月", @"12月", nil];
         }
         self.userInteractionEnabled = YES;
         [self loadView];
@@ -35,21 +42,21 @@
 
 - (void)loadView {
     UIImageView * bgView = [[UIImageView alloc] init];
-    bgView.frame = CGRectMake(163, 110, 151, 248);
+    bgView.frame = CGRectMake(163, 155, 151, 248);
     bgView.userInteractionEnabled = YES;
     bgView.backgroundColor = [UIColor clearColor];
     bgView.image = LOADIMAGE(@"gj_ageChoice_bg_img", kImageTypePNG);
     [self addSubview:bgView];
     
     UIImageView * image = [[UIImageView alloc] init];
-    image.frame = CGRectMake(276, 87, 17, 23);
+    image.frame = CGRectMake(276, 132, 17, 23);
     image.backgroundColor = [UIColor clearColor];
     image.userInteractionEnabled = YES;
     image.image = LOADIMAGE(@"gl_select_Y_bg_img", kImageTypePNG);
     [self addSubview:image];
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(260, 77, 45, 35);
+    button.frame = CGRectMake(260, 122, 45, 35);
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor = [UIColor clearColor];
     [self addSubview:button];
@@ -58,7 +65,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    tableView.backgroundColor = [UIColor whiteColor];
+    tableView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
     tableView.alpha = 0.9;
     [bgView addSubview:tableView];
 }
@@ -67,7 +74,6 @@
 
 - (void)buttonClick:(UIButton *)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"removeAgeChoiceModelView" object:nil];
-    
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -88,6 +94,20 @@
     cell.mtitle.text = [_monthArr objectAtIndex:indexPath.row];
     cell.leftImg.image = LOADIMAGE(@"gj_anniu_white_img", kImageTypePNG);
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CUSFileStorage *storage = [CUSFileStorageManager getFileStorage:CURRENTENCRYPTFILE];
+    [storage beginUpdates];
+    NSString * str = [AESCrypt encrypt:[_monthArr objectAtIndex:indexPath.row] password:PASSWORD];
+    [storage setObject:str forKey:PAILUANYUEFEN_KEY];
+    [storage endUpdates];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addYueFenMethod" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removeAgeChoiceModelView" object:nil];
+    });
 }
 
 /*

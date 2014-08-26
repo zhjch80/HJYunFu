@@ -7,8 +7,16 @@
 //
 
 #import "HJBabyHeightPredictionViewController.h"
+#import "HJMCustomTextField.h"
+#import "HJPeriodSwitchDueDate.h"
 
-@interface HJBabyHeightPredictionViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate>
+@interface HJBabyHeightPredictionViewController ()<UIGestureRecognizerDelegate,UINavigationBarDelegate,UITextFieldDelegate> {
+    BOOL isSelectBoy;
+    BOOL isSelectGirl;
+    
+    NSInteger sexValue;  // 1为男孩  2为女孩  0没有选
+}
+@property (nonatomic, strong) UIToolbar *keyboardToolbar;
 
 @end
 
@@ -57,7 +65,12 @@
 }
 
 /**
- button 101
+ scr 101
+textField tag 201
+ button 501
+ img tag 301 302
+ 性别选择 button 401 402
+ displayResults tag 601
  */
 - (void)viewDidLoad
 {
@@ -68,8 +81,14 @@
 
     [self loadNavBarWithTitle:@"宝宝身高预测"];
     
+    isSelectBoy = NO;
+    isSelectGirl = NO;
+    sexValue = 0;
+    
     UIScrollView * scr = [[UIScrollView alloc] init];
-    scr.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleHeight + 5);
+    scr.userInteractionEnabled = YES;
+    scr.tag = 101;
+    scr.frame = CGRectMake(0, 0, [UtilityFunc shareInstance].globleWidth, [UtilityFunc shareInstance].globleAllHeight + 49);
     scr.contentSize = CGSizeMake([UtilityFunc shareInstance].globleWidth, 490);
     scr.pagingEnabled = NO;
     [self.view addSubview:scr];
@@ -81,20 +100,99 @@
     bgImg.backgroundColor = [UIColor clearColor];
     [scr addSubview:bgImg];
     
-    NSArray * titleArr = [[NSArray alloc] initWithObjects:@"父亲身高:\t\t\t\t\t厘米(cm)", @"母亲身高:\t\t\t\t\t厘米(cm)", @"孩子性别:", nil];
+    NSArray * titleArr = [[NSArray alloc] initWithObjects:@"父亲身高:", @"母亲身高:", @"孩子性别:", @"厘米(cm)", nil];
     for (int i=0; i<3; i++) {
         UILabel * title = [[UILabel alloc] init];
-        title.frame = CGRectMake(23, 21 + i*41, 290, 30);
+        title.frame = CGRectMake(23, 21 + i*41, 80, 30);
         title.text = [titleArr objectAtIndex:i];
+        title.userInteractionEnabled = YES;
         title.backgroundColor = [UIColor clearColor];
         [scr addSubview:title];
+    }
+    
+    for (int i=0; i<2; i++) {
+        UILabel * title = [[UILabel alloc] init];
+        title.frame = CGRectMake(230, 21 + i*41, 80, 30);
+        title.text = [titleArr objectAtIndex:3];
+        title.userInteractionEnabled = YES;
+        title.textColor = [UIColor colorWithRed:0.56 green:0.56 blue:0.56 alpha:1];
+        title.backgroundColor = [UIColor clearColor];
+        [scr addSubview:title];
+    }
+    
+    // Keyboard toolbar
+    if (self.keyboardToolbar == nil) {
+        self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 38.0f)];
+        self.keyboardToolbar.backgroundColor = [UIColor whiteColor];
+        self.keyboardToolbar.barTintColor = [UIColor whiteColor];
+        
+        UIBarButtonItem *cancelBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"取消", @"")
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:self
+                                                                         action:@selector(cancelMethod:)];
+        [cancelBarItem setTintColor:[UIColor colorWithRed:0.99 green:0.24 blue:0.38 alpha:1]];
+        
+        UIBarButtonItem *spaceBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                      target:nil
+                                                                                      action:nil];
+        
+        UIBarButtonItem *doneBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"完成", @"")
+                                                                        style:UIBarButtonItemStyleDone
+                                                                       target:self
+                                                                       action:@selector(doneMethod:)];
+        [doneBarItem setTintColor:[UIColor colorWithRed:0.99 green:0.24 blue:0.38 alpha:1]];
+        
+        [self.keyboardToolbar setItems:[NSArray arrayWithObjects:cancelBarItem, spaceBarItem, doneBarItem, nil]];
+    }
+    
+    for (int i=0; i<2; i++) {
+        HJMCustomTextField * textField = [[HJMCustomTextField alloc] init];
+        textField.frame = CGRectMake(100, 21 + i*41, 110, 30);
+        textField.delegate = self;
+        textField.tag = 201 + i;
+        textField.backgroundColor = [UIColor clearColor];
+        textField.placeholder = @"请输入身高";
+        textField.text = @"";
+        textField.textColor = [UIColor blackColor];
+        textField.font = [UIFont systemFontOfSize:16.5];
+        textField.inputAccessoryView = self.keyboardToolbar;
+        textField.keyboardType =  UIKeyboardTypeDecimalPad;
+        [[HJMCustomTextField appearance] setTintColor:[UIColor colorWithRed:0.98 green:0.58 blue:0.65 alpha:1]];
+        [scr addSubview:textField];
+    }
+    
+    NSArray * arr = [[NSArray alloc] initWithObjects:@"男", @"女", nil];
+    for (int i=0; i<2; i++) {
+        UIImageView * img = [[UIImageView alloc] init];
+        img.userInteractionEnabled = YES;
+        img.frame = CGRectMake(120 + i*80, 110, 15, 15);
+        img.tag = 301 + i;
+        img.image = LOADIMAGE(@"gj_anniu_white_img", kImageTypePNG);
+        img.backgroundColor = [UIColor clearColor];
+        img.userInteractionEnabled = YES;
+        [scr addSubview:img];
+        
+        UILabel * label = [[UILabel alloc] init];
+        label.userInteractionEnabled = YES;
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor colorWithRed:0.56 green:0.56 blue:0.56 alpha:1];
+        label.frame = CGRectMake(150 + i*80, 102, 30, 30);
+        label.text = [arr objectAtIndex:i];
+        [scr addSubview:label];
+        
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(110 + i*90, 98, 90, 40);
+        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 401 +i;
+        button.backgroundColor = [UIColor clearColor];
+        [scr addSubview:button];
     }
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(55, 160, 207, 34);
     [button setBackgroundImage:LOADIMAGE(@"gj_kscs_btn_img", kImageTypePNG) forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    button.tag = 101;
+    button.tag = 501;
     [scr addSubview:button];
     
     UIImageView * selectImg = [[UIImageView alloc] init];
@@ -110,6 +208,13 @@
     results.backgroundColor = [UIColor clearColor];
     results.font = [UIFont systemFontOfSize:16.0];
     [scr addSubview:results];
+    
+    UILabel * displayResults = [[UILabel alloc] init];
+    displayResults.frame = CGRectMake(145, 215, 200, 30);
+    displayResults.tag = 601;
+    displayResults.backgroundColor = [UIColor clearColor];
+    displayResults.font = [UIFont systemFontOfSize:16.0];
+    [scr addSubview:displayResults];
     
     UILabel * text = [[UILabel alloc] initWithFrame:CGRectMake(8, 215, [UtilityFunc shareInstance].globleWidth - 11, 320)];
     text.backgroundColor = [UIColor clearColor];
@@ -130,8 +235,147 @@
     
 }
 
-- (void)buttonClick:(UIButton *)sender {
+- (void)cancelMethod:(id)sender {
+    for (int i=0; i<2; i++) {
+        [((HJMCustomTextField *)[self.view viewWithTag:201 +i]) resignFirstResponder];
+    }
+}
+
+- (void)doneMethod:(id)sender {
+    for (int i=0; i<2; i++) {
+        [((HJMCustomTextField *)[self.view viewWithTag:201 +i]) resignFirstResponder];
+    }
     
+    //判断输入内容格式的正确性
+}
+/**
+ 判断条件
+ 1.身高上限240.0,下限100； 2. 并且不多于两个点  3判断空
+ */
+- (void)buttonClick:(UIButton *)sender {
+    switch (sender.tag) {
+        case 501:{
+            NSString * sexStr = [[NSString alloc] init];
+            
+            if (sexValue == 0){
+                NSLog(@"没有选");
+                return ;
+            }else if (sexValue == 1){
+                NSLog(@"boy");
+                sexStr = @"男";
+            }else if (sexValue == 2){
+                NSLog(@"girl");
+                sexStr = @"女";
+            }
+            
+            if ([((HJMCustomTextField *)[self.view viewWithTag:201]).text isEqualToString:@""]) {
+                NSLog(@"没有选身高 1");
+                return ;
+            }
+            
+            if ([((HJMCustomTextField *)[self.view viewWithTag:202]).text isEqualToString:@""]) {
+                NSLog(@"没有选身高 2");
+                return ;
+            }
+
+            if ([self rangesOfString:@"." inString:((HJMCustomTextField *)[self.view viewWithTag:201]).text] >= 2){
+                NSLog(@"身高1 格式不正确");
+                return ;
+            }else{
+                NSLog(@"1格式正确");
+            }
+            
+            if ([self rangesOfString:@"." inString:((HJMCustomTextField *)[self.view viewWithTag:202]).text] >= 2){
+                NSLog(@"身高2 格式不正确");
+                return ;
+            }else{
+                NSLog(@"2格式正确");
+            }
+             
+            if (((HJMCustomTextField *)[self.view viewWithTag:201]).text.integerValue >= 100.0 && ((HJMCustomTextField *)[self.view viewWithTag:201]).text.integerValue <= 240.0){
+                NSLog(@"text1 符合范围");
+            }else{
+                NSLog(@"text1 不符合范围");
+                return ;
+            }
+            
+            if (((HJMCustomTextField *)[self.view viewWithTag:202]).text.integerValue >= 100.0 && ((HJMCustomTextField *)[self.view viewWithTag:202]).text.integerValue <= 240.0){
+                NSLog(@"text2 符合范围");
+            }else{
+                NSLog(@"text2 不符合范围");
+                return;
+            }
+            
+            NSString * Min_H = [NSString stringWithFormat:@"%@",[[HJPeriodSwitchDueDate getBabyHeightWithFatherHeight:((HJMCustomTextField *)[self.view viewWithTag:201]).text WithMotherHeight:((HJMCustomTextField *)[self.view viewWithTag:202]).text WithGender:sexStr] objectForKey:@"babyHeight_MIN"]];
+            
+            NSString * Max_H = [NSString stringWithFormat:@"%@",[[HJPeriodSwitchDueDate getBabyHeightWithFatherHeight:((HJMCustomTextField *)[self.view viewWithTag:201]).text WithMotherHeight:((HJMCustomTextField *)[self.view viewWithTag:202]).text WithGender:sexStr] objectForKey:@"babyHeight_MAX"]];
+            
+            Min_H = [Min_H substringToIndex:5];
+            
+            Max_H = [Max_H substringToIndex:5];
+
+            NSString * displayResults = [NSString stringWithFormat:@"在%@和%@之间",Min_H,Max_H];
+            
+            ((UILabel *)[self.view viewWithTag:601]).text = displayResults;
+            break;
+        }
+        case 401:{
+            UIImageView * image_boy = (UIImageView *)[(UIScrollView *)[self.view viewWithTag:101] viewWithTag:301];
+            UIImageView * image_girl = (UIImageView *)[(UIScrollView *)[self.view viewWithTag:101] viewWithTag:302];
+
+            if (isSelectBoy){
+                image_boy.image = LOADIMAGE(@"gj_anniu_white_img", kImageTypePNG);
+                image_girl.image = LOADIMAGE(@"gj_anniu_red_img", kImageTypePNG);
+
+                isSelectBoy = NO;
+                isSelectGirl = YES;
+                sexValue = 2;
+            }else{
+                image_boy.image = LOADIMAGE(@"gj_anniu_red_img", kImageTypePNG);
+                image_girl.image = LOADIMAGE(@"gj_anniu_white_img", kImageTypePNG);
+                isSelectBoy = YES;
+                isSelectGirl = NO;
+                sexValue = 1;
+            }
+            break;
+        }
+        case 402:{
+            UIImageView * image_boy = (UIImageView *)[(UIScrollView *)[self.view viewWithTag:101] viewWithTag:301];
+            UIImageView * image_girl = (UIImageView *)[(UIScrollView *)[self.view viewWithTag:101] viewWithTag:302];
+
+            if (isSelectGirl){
+                image_girl.image = LOADIMAGE(@"gj_anniu_white_img", kImageTypePNG);
+                image_boy.image = LOADIMAGE(@"gj_anniu_red_img", kImageTypePNG);
+                isSelectBoy = YES;
+                isSelectGirl = NO;
+                sexValue = 1;
+            }else{
+                image_girl.image = LOADIMAGE(@"gj_anniu_red_img", kImageTypePNG);
+                image_boy.image = LOADIMAGE(@"gj_anniu_white_img", kImageTypePNG);
+                isSelectBoy = NO;
+                isSelectGirl = YES;
+                sexValue = 2;
+            }
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+/**
+ 判断“.” 在字符串中出现的次数 results 对象是“.” 在str的位置
+ */
+- (NSInteger)rangesOfString:(NSString *)searchString inString:(NSString *)str {
+    NSMutableArray *results = [NSMutableArray array];
+    NSRange searchRange = NSMakeRange(0, [str length]);
+    NSRange range;
+    while ((range = [str rangeOfString:searchString options:0 range:searchRange]).location != NSNotFound) {
+        [results addObject:[NSValue valueWithRange:range]];
+        searchRange = NSMakeRange(NSMaxRange(range), [str length] - NSMaxRange(range));
+    }
+    return [results count];
 }
 
 #pragma mark - 导航栏

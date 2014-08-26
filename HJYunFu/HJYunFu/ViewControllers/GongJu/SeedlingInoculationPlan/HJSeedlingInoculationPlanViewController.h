@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJSeedlingInoculationPlanViewController : UIViewController
+@interface HJSeedlingInoculationPlanViewController : HJBaseViewController
 
 @end

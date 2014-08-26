@@ -25,6 +25,7 @@
     return self;
 }
 
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:kAppearTabbar object:nil];
@@ -45,16 +46,24 @@
     NSArray * titleArr = [[NSArray alloc] initWithObjects:@"修改预产期", @"我的收藏", nil];
     for (int i=0; i<2; i++) {
         UIImageView * image = [[UIImageView alloc] initWithFrame:CGRectMake(20, 80 + i*50, [UtilityFunc shareInstance].globleWidth - 40, 40)];
-        image.backgroundColor = [UIColor yellowColor];
+        image.backgroundColor = [UIColor clearColor];
         image.userInteractionEnabled = YES;
-//        image.image = LOADIMAGE(@"", kImageTypePNG);
+        image.image = LOADIMAGE(@"me_cellbg_img", kImageTypePNG);
         [self.view addSubview:image];
+        
+        UIImageView * arrowImg = [[UIImageView alloc] init];
+        arrowImg.frame = CGRectMake(270, 95 + i*50, 7, 8);
+        arrowImg.backgroundColor = [UIColor clearColor];
+        arrowImg.userInteractionEnabled = YES;
+        arrowImg.image = LOADIMAGE(@"me_arrow_img", kImageTypePNG);
+        [self.view addSubview:arrowImg];
         
         UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(40, 80 + i*50, [UtilityFunc shareInstance].globleWidth - 60, 40)];
         title.userInteractionEnabled = YES;
         title.backgroundColor = [UIColor clearColor];
         title.text = [titleArr objectAtIndex:i];
         title.font = LANTING_FONT(19.0);
+        title.textColor = [UIColor colorWithRed:0.36 green:0.36 blue:0.36 alpha:1];
         [self.view addSubview:title];
         
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];

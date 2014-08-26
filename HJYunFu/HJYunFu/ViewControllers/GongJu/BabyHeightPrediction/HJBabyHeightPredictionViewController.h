@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HJBabyHeightPredictionViewController : UIViewController
+@interface HJBabyHeightPredictionViewController : HJBaseViewController
 
 @end
